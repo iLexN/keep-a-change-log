@@ -91,8 +91,10 @@ class Release
      */
     public function deprecated(string $description) : self
     {
-        return $this->addChangeList(ChangeTypeFactory::DEPRECATED,
-            $description);
+        return $this->addChangeList(
+            ChangeTypeFactory::DEPRECATED,
+            $description
+        );
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace Ilex\ChangeLog\Type;
 
-
 /**
  * Class Deprecated
  *
