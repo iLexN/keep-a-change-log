@@ -1,0 +1,16 @@
+{
+    "name": "ilexn/keep-a-change-log",
+    "description": "Create change log follow keepachangelog.com",
+    "authors": [
+        {
+            "name": "iLexN",
+            "email": "ilex.job@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ilex\\ChangeLog\\": "src/ChangeLog"
+        }
+    }
+}
