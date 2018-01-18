@@ -16,6 +16,6 @@ class Security extends AbstractChangeType
      */
     public function getTitle(): string
     {
-        return 'Fixed';
+        return 'Security';
     }
 }

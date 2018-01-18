@@ -67,6 +67,7 @@ class ChangeTypeFactory
             case self::SECURITY:
                 return new Security();
             default:
+                //todo: throw?
                 return new Added();
         }
     }

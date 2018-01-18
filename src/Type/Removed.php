@@ -16,6 +16,6 @@ class Removed extends AbstractChangeType
      */
     public function getTitle(): string
     {
-        return 'Fixed';
+        return 'Removed';
     }
 }
