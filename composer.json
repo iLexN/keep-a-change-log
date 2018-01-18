@@ -13,6 +13,14 @@
             "Ilex\\ChangeLog\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ilex\\ChangeLog\\Tests\\": "tests/"
+        },
+        "files": [
+            "tests/helper.php"
+        ]
+    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.10",
         "squizlabs/php_codesniffer": "3.1.1",
@@ -27,7 +35,6 @@
             "@test"
         ],
         "dev":[
-            "clear",
             "@cs-fix",
             "@phpcs",
             "@test-dev"

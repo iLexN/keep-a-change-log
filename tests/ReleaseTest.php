@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Ilex\ChangeLog\Tests;
 
@@ -115,10 +116,6 @@ class ReleaseTest extends TestCase
         $this->release->removed('Removed1');
         $this->release->removed('Removed2');
 
-        $change = new Removed();
-        $change->add('Removed1');
-        $change->add('Removed2');
-
         $expected = [4 => $this->getExpectedResult()[4]];
         $this->assertEquals(
             $expected,
@@ -132,10 +129,6 @@ class ReleaseTest extends TestCase
         $this->release->fixed('fixed1');
         $this->release->fixed('fixed2');
 
-        $change = new Fixed();
-        $change->add('fixed1');
-        $change->add('fixed2');
-
         $expected = [5 => $this->getExpectedResult()[5]];
         $this->assertEquals(
             $expected,
@@ -148,10 +141,6 @@ class ReleaseTest extends TestCase
     {
         $this->release->security('security1');
         $this->release->security('security2');
-
-        $change = new Security();
-        $change->add('security1');
-        $change->add('security2');
 
         $expected = [6 => $this->getExpectedResult()[6]];
         $this->assertEquals(
