@@ -24,6 +24,7 @@ if (!function_exists('callMethod')) {
 if (!function_exists('getProperty')) {
     /**
      * Get protected or private property
+     * ssem can this phpunit readAttribute();
      *
      * @param $object
      * @param $propertyName
@@ -35,5 +36,21 @@ if (!function_exists('getProperty')) {
         $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
         return $property->getValue($object);
+    }
+}
+
+if (!function_exists('setProperty')) {
+    /**
+     * Set protected or private property
+     * @param $object
+     * @param $propertyName
+     * @param $propertyValue
+     */
+    function setProperty($object, $propertyName, $propertyValue)
+    {
+        $reflection = new \ReflectionClass($object);
+        $property = $reflection->getProperty($propertyName);
+        $property->setAccessible(true);
+        $property->setValue($object, $propertyValue);
     }
 }
