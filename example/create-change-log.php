@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     new DefaultFormatter('https://github.com/iLexN/keep-a-change-log/compare')
 );
 
-$c->addRelease((new Release('HEAD', ''))
+$c->addRelease((new Release('0.0.3', ''))
     ->added('Add Docs')
     ->added('phpunit test')
     ->added('example')
