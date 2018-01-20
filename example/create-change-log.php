@@ -15,13 +15,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     new DefaultFormatter('https://github.com/iLexN/keep-a-change-log/compare')
 );
 
-$c->addRelease((new Release('0.0.3', ''))
-    ->added('Add Docs')
-    ->added('phpunit test')
-    ->added('example')
-    ->fixed('Fix the title of removed & security')
-    ->fixed('Duplicate Render Release link')
-    ->changed('composer package sort by order')
+$c->addRelease(
+    (new Release('HEAD', ''))
+        ->fixed('Change Log link format')
+)->addRelease(
+    (new Release('0.0.3', '2018-01-20'))
+        ->added('Add Docs')
+        ->added('phpunit test')
+        ->added('example')
+        ->fixed('Fix the title of removed & security')
+        ->fixed('Duplicate Render Release link')
+        ->changed('composer package sort by order')
 )->addRelease(
     (new Release('0.0.2', '2018-01-18'))
         ->added('Add Docs')

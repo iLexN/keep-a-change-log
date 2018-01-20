@@ -109,7 +109,7 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderLink(Release $release, Release $nextRelease)
     {
-        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag} ";
+        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag}".\PHP_EOL;
         $this->links .= $link;
     }
 

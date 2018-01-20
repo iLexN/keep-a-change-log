@@ -129,7 +129,7 @@ class DefaultFormatterTest extends TestCase
             $return = '';
         }
 
-        $expected = '[tag1]: url/tag2...tag1 ';
+        $expected = '[tag1]: url/tag2...tag1'.\PHP_EOL;
         $this->assertEquals($expected, $return, 'Test 2 Tag');
         try {
             callMethod($this->formatter, 'renderLink', [$release2, $release3]);
@@ -138,7 +138,7 @@ class DefaultFormatterTest extends TestCase
             $return = '';
         }
 
-        $expected .= '[tag2]: url/tag3...tag2 ';
+        $expected .= '[tag2]: url/tag3...tag2'.\PHP_EOL;
         $this->assertEquals($expected, $return, 'Test 3 tag');
     }
 
