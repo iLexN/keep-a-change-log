@@ -125,6 +125,8 @@ class DefaultFormatter implements FormatterInterface
         string $description,
         array $releases
     ): string {
+        //reset links
+        $this->links = '';
         $out = $this->renderTitle($title, $description);
         $out .= $this->renderReleases($releases);
         $out .= $this->getLinks();
