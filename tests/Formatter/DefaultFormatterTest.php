@@ -23,27 +23,42 @@ class DefaultFormatterTest extends TestCase
 
     public function testConstruct()
     {
-        $this->assertEquals('url', getProperty($this->formatter, 'url'));
+        try {
+            $return = getProperty($this->formatter, 'url');
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+        $this->assertEquals('url', $return);
     }
 
     public function testRenderTitle()
     {
         $title = 'title';
         $description = 'description';
-        $return = callMethod(
-            $this->formatter,
-            'renderTitle',
-            [$title, $description]
-        );
-        $expected = '# ' . $title . "\n" . $description . "\n\n";
+        try {
+            $return = callMethod(
+                $this->formatter,
+                'renderTitle',
+                [$title, $description]
+            );
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
+        $expected = '# ' . $title . \PHP_EOL . $description . \PHP_EOL . \PHP_EOL;
         $this->assertEquals($expected, $return);
     }
 
     public function testGetLinks()
     {
         $links = 'abc';
-        setProperty($this->formatter, 'links', $links);
-        $return = callMethod($this->formatter, 'getLinks');
+        try {
+            setProperty($this->formatter, 'links', $links);
+            $return = callMethod($this->formatter, 'getLinks');
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
         $this->assertEquals($links, $return);
     }
 
@@ -57,11 +72,16 @@ class DefaultFormatterTest extends TestCase
             ->added('1a')
             ->security('b')
             ->fixed('c');
-        $return = callMethod(
-            $this->formatter,
-            'renderReleases',
-            [[$release, $release2]]
-        );
+        try {
+            $return = callMethod(
+                $this->formatter,
+                'renderReleases',
+                [[$release, $release2]]
+            );
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
         $expected = file_get_contents(__DIR__ . '/expected/render-releases-result.md');
         $this->assertEquals($expected, $return);
     }
@@ -72,7 +92,12 @@ class DefaultFormatterTest extends TestCase
             ->added('1a')
             ->security('b')
             ->fixed('c');
-        $return = callMethod($this->formatter, 'renderRelease', [$release]);
+        try {
+            $return = callMethod($this->formatter, 'renderRelease', [$release]);
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
         $expected = file_get_contents(__DIR__ . '/expected/render-release-result.md');
         $this->assertEquals($expected, $return);
     }
@@ -82,7 +107,12 @@ class DefaultFormatterTest extends TestCase
         $add = new Added();
         $add->add('a');
         $add->add('b');
-        $return = callMethod($this->formatter, 'renderChanges', [$add]);
+        try {
+            $return = callMethod($this->formatter, 'renderChanges', [$add]);
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
         $expected = file_get_contents(__DIR__ . '/expected/render-changes-result.md');
         $this->assertEquals($expected, $return);
     }
@@ -92,16 +122,25 @@ class DefaultFormatterTest extends TestCase
         $release = new Release('tag1', '2017-06-07');
         $release2 = new Release('tag2', '2017-05-07');
         $release3 = new Release('tag3', '2017-04-07');
-        callMethod($this->formatter, 'renderLink', [$release, $release2]);
-        $return = getProperty($this->formatter, 'links');
+        try {
+            callMethod($this->formatter, 'renderLink', [$release, $release2]);
+            $return = getProperty($this->formatter, 'links');
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
         $expected = '[tag1]: url/tag2...tag1 ';
         $this->assertEquals($expected, $return, 'Test 2 Tag');
-        callMethod($this->formatter, 'renderLink', [$release2, $release3]);
-        $return = getProperty($this->formatter, 'links');
+        try {
+            callMethod($this->formatter, 'renderLink', [$release2, $release3]);
+            $return = getProperty($this->formatter, 'links');
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+
         $expected .= '[tag2]: url/tag3...tag2 ';
         $this->assertEquals($expected, $return, 'Test 3 tag');
     }
-
 
     public function testRender()
     {
@@ -118,9 +157,15 @@ class DefaultFormatterTest extends TestCase
             ->changed('e')
             ->security('f');
 
-        $result = $this->formatter->render('This is title', 'Very long description...', [
-            $release,$release2,$release3
-        ]);
+        $result = $this->formatter->render(
+            'This is title',
+            'Very long description...',
+            [
+                $release,
+                $release2,
+                $release3,
+            ]
+        );
         $expected = file_get_contents(__DIR__ . '/expected/render-result.md');
         $this->assertEquals($expected, $result);
     }

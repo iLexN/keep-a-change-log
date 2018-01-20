@@ -8,7 +8,9 @@ if (!function_exists('callMethod')) {
      * @param $object
      * @param $methodName
      * @param array $arguments
+     *
      * @return mixed
+     * @throws ReflectionException
      */
     function callMethod($object, $methodName, array $arguments = [])
     {
@@ -28,7 +30,9 @@ if (!function_exists('getProperty')) {
      *
      * @param $object
      * @param $propertyName
+     *
      * @return mixed
+     * @throws ReflectionException
      */
     function getProperty($object, $propertyName)
     {
@@ -42,9 +46,12 @@ if (!function_exists('getProperty')) {
 if (!function_exists('setProperty')) {
     /**
      * Set protected or private property
+     *
      * @param $object
      * @param $propertyName
      * @param $propertyValue
+     *
+     * @throws ReflectionException
      */
     function setProperty($object, $propertyName, $propertyValue)
     {

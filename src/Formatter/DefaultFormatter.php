@@ -42,7 +42,7 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderTitle(string $title, string $description): string
     {
-        return '# ' . $title . "\n" . $description . "\n\n";
+        return '# ' . $title . \PHP_EOL . $description . \PHP_EOL.\PHP_EOL;
     }
 
     /**
@@ -79,7 +79,7 @@ class DefaultFormatter implements FormatterInterface
     private function renderRelease(Release $release): string
     {
         $string = '';
-        $string .= "## [{$release->tag}] - $release->date" . "\n";
+        $string .= "## [{$release->tag}] - $release->date" . \PHP_EOL;
         $list = $release->getChangeList();
         foreach ($list as $change => $changes) {
             $string .= $this->renderChanges($changes);
@@ -94,12 +94,12 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderChanges(TypeInterface $changes): string
     {
-        $string = "### {$changes->getTitle()}" . "\n";
+        $string = "### {$changes->getTitle()}" . \PHP_EOL;
         $listChange = $changes->getList();
         foreach ($listChange as $featureList) {
-            $string .= "- {$featureList}" . "\n";
+            $string .= "- {$featureList}" . \PHP_EOL;
         }
-        $string .= "\n";
+        $string .= \PHP_EOL;
         return $string;
     }
 
