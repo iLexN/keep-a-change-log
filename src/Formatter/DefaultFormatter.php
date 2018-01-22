@@ -42,7 +42,7 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderTitle(string $title, string $description): string
     {
-        return '# ' . $title . \PHP_EOL . $description . \PHP_EOL . \PHP_EOL;
+        return '# '.$title.\PHP_EOL.$description.\PHP_EOL.\PHP_EOL;
     }
 
     /**
@@ -79,7 +79,7 @@ class DefaultFormatter implements FormatterInterface
     private function renderRelease(Release $release): string
     {
         $string = '';
-        $string .= "## [{$release->tag}] - $release->date" . \PHP_EOL;
+        $string .= "## [{$release->tag}] - $release->date".\PHP_EOL;
         $list = $release->getChangeList();
         foreach ($list as $change => $changes) {
             $string .= $this->renderChanges($changes);
@@ -94,10 +94,10 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderChanges(TypeInterface $changes): string
     {
-        $string = "### {$changes->getTitle()}" . \PHP_EOL;
+        $string = "### {$changes->getTitle()}".\PHP_EOL;
         $listChange = $changes->getList();
         foreach ($listChange as $featureList) {
-            $string .= "- {$featureList}" . \PHP_EOL;
+            $string .= "- {$featureList}".\PHP_EOL;
         }
         $string .= \PHP_EOL;
         return $string;
@@ -109,7 +109,7 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderLink(Release $release, Release $nextRelease)
     {
-        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag}" . \PHP_EOL;
+        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag}".\PHP_EOL;
         $this->links .= $link;
     }
 

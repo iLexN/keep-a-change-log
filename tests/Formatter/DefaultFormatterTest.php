@@ -47,7 +47,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $expected = '# ' . $title . \PHP_EOL . $description . \PHP_EOL . \PHP_EOL;
+        $expected = '# '.$title.\PHP_EOL.$description.\PHP_EOL.\PHP_EOL;
         $this->assertEquals($expected, $return);
     }
 
@@ -86,7 +86,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $expected = file_get_contents(__DIR__ . '/expected/render-releases-result.md');
+        $expected = file_get_contents(__DIR__.'/expected/render-releases-result.md');
         $this->assertEquals($expected, $return);
     }
 
@@ -103,7 +103,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $expected = file_get_contents(__DIR__ . '/expected/render-release-result.md');
+        $expected = file_get_contents(__DIR__.'/expected/render-release-result.md');
         $this->assertEquals($expected, $return);
     }
 
@@ -119,7 +119,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $expected = file_get_contents(__DIR__ . '/expected/render-changes-result.md');
+        $expected = file_get_contents(__DIR__.'/expected/render-changes-result.md');
         $this->assertEquals($expected, $return);
     }
 
@@ -136,7 +136,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $expected = '[tag1]: url/tag2...tag1' . \PHP_EOL;
+        $expected = '[tag1]: url/tag2...tag1'.\PHP_EOL;
         $this->assertEquals($expected, $return, 'Test 2 Tag');
         try {
             callMethod($this->formatter, 'renderLink', [$release2, $release3]);
@@ -146,7 +146,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $expected .= '[tag2]: url/tag3...tag2' . \PHP_EOL;
+        $expected .= '[tag2]: url/tag3...tag2'.\PHP_EOL;
         $this->assertEquals($expected, $return, 'Test 3 tag');
     }
 
@@ -174,7 +174,7 @@ class DefaultFormatterTest extends TestCase
                 $release3,
             ]
         );
-        $expected = file_get_contents(__DIR__ . '/expected/render-result.md');
+        $expected = file_get_contents(__DIR__.'/expected/render-result.md');
         $this->assertEquals($expected, $result);
     }
 }

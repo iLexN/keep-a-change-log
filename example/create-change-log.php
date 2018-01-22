@@ -4,7 +4,7 @@ use Ilex\ChangeLog\ChangeLog;
 use Ilex\ChangeLog\Formatter\DefaultFormatter;
 use Ilex\ChangeLog\Release;
 
-require(__DIR__ . '/../vendor/autoload.php');
+require(__DIR__.'/../vendor/autoload.php');
 
 $c = new ChangeLog(
     'Change Log',

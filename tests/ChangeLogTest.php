@@ -113,7 +113,7 @@ class ChangeLogTest extends TestCase
         );
 
         $result = $this->changeLog->render();
-        $expected = file_get_contents(__DIR__ . '/expected/change-log.md');
+        $expected = file_get_contents(__DIR__.'/expected/change-log.md');
         $this->assertEquals($expected, $result, 'Test ChangeLog Full Render');
     }
 }
