@@ -17,26 +17,41 @@ class ChangeTypeFactoryTest extends TestCase
     public function testFactory()
     {
         $this->assertEquals(new Added(), ChangeTypeFactory::factory(1));
-        $this->assertEquals(new Added(), ChangeTypeFactory::factory(ChangeTypeFactory::ADDED));
+        $this->assertEquals(
+            new Added(),
+            ChangeTypeFactory::factory(ChangeTypeFactory::ADDED)
+        );
 
         $this->assertEquals(new Changed(), ChangeTypeFactory::factory(2));
-        $this->assertEquals(new Changed(), ChangeTypeFactory::factory(ChangeTypeFactory::CHANGED));
+        $this->assertEquals(
+            new Changed(),
+            ChangeTypeFactory::factory(ChangeTypeFactory::CHANGED)
+        );
 
         $this->assertEquals(new Deprecated(), ChangeTypeFactory::factory(3));
-        $this->assertEquals(new Deprecated(), ChangeTypeFactory::factory(ChangeTypeFactory::DEPRECATED));
+        $this->assertEquals(
+            new Deprecated(),
+            ChangeTypeFactory::factory(ChangeTypeFactory::DEPRECATED)
+        );
 
         $this->assertEquals(new Removed(), ChangeTypeFactory::factory(4));
-        $this->assertEquals(new Removed(), ChangeTypeFactory::factory(ChangeTypeFactory::REMOVED));
+        $this->assertEquals(
+            new Removed(),
+            ChangeTypeFactory::factory(ChangeTypeFactory::REMOVED)
+        );
 
         $this->assertEquals(new Fixed(), ChangeTypeFactory::factory(5));
-        $this->assertEquals(new Fixed(), ChangeTypeFactory::factory(ChangeTypeFactory::FIXED));
+        $this->assertEquals(
+            new Fixed(),
+            ChangeTypeFactory::factory(ChangeTypeFactory::FIXED)
+        );
 
         $this->assertEquals(new SECURITY(), ChangeTypeFactory::factory(6));
-        $this->assertEquals(new SECURITY(), ChangeTypeFactory::factory(ChangeTypeFactory::SECURITY));
+        $this->assertEquals(
+            new SECURITY(),
+            ChangeTypeFactory::factory(ChangeTypeFactory::SECURITY)
+        );
 
         $this->assertEquals(new Added(), ChangeTypeFactory::factory(11111));
-
-        //$this->expectException(\TypeError::class);
-        //ChangeTypeFactory::factory('a');
     }
 }

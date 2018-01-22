@@ -20,5 +20,9 @@ interface FormatterInterface
      *
      * @return string
      */
-    public function render(string $title, string $description, array $releases): string;
+    public function render(
+        string $title,
+        string $description,
+        array $releases
+    ): string;
 }

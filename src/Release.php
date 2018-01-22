@@ -48,7 +48,7 @@ class Release
      *
      * @return Release
      */
-    private function addChangeList(int $key, string $description) : self
+    private function addChangeList(int $key, string $description): self
     {
         if (!\array_key_exists($key, $this->changeList)) {
             $this->changeList[$key] = ChangeTypeFactory::factory($key);
@@ -70,7 +70,7 @@ class Release
      *
      * @return Release
      */
-    public function added(string $description) : self
+    public function added(string $description): self
     {
         return $this->addChangeList(ChangeTypeFactory::ADDED, $description);
     }
@@ -80,7 +80,7 @@ class Release
      *
      * @return Release
      */
-    public function changed(string $description) : self
+    public function changed(string $description): self
     {
         return $this->addChangeList(ChangeTypeFactory::CHANGED, $description);
     }
@@ -90,7 +90,7 @@ class Release
      *
      * @return Release
      */
-    public function deprecated(string $description) : self
+    public function deprecated(string $description): self
     {
         return $this->addChangeList(
             ChangeTypeFactory::DEPRECATED,
@@ -103,7 +103,7 @@ class Release
      *
      * @return Release
      */
-    public function removed(string $description) : self
+    public function removed(string $description): self
     {
         return $this->addChangeList(ChangeTypeFactory::REMOVED, $description);
     }
@@ -113,7 +113,7 @@ class Release
      *
      * @return Release
      */
-    public function fixed(string $description) : self
+    public function fixed(string $description): self
     {
         return $this->addChangeList(ChangeTypeFactory::FIXED, $description);
     }
@@ -123,7 +123,7 @@ class Release
      *
      * @return Release
      */
-    public function security(string $description) : self
+    public function security(string $description): self
     {
         return $this->addChangeList(ChangeTypeFactory::SECURITY, $description);
     }

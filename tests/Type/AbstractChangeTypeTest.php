@@ -23,13 +23,18 @@ class AbstractChangeTypeTest extends TestCase
     {
         $this->type->add('a');
         $this->type->add('b');
-        $this->assertEquals(['a','b'], getProperty($this->type, 'list'));
+        try {
+            $return = getProperty($this->type, 'list');
+        } catch (\ReflectionException $e) {
+            $return = '';
+        }
+        $this->assertEquals(['a', 'b'], $return);
     }
 
     public function testGetList()
     {
         $this->type->add('a');
         $this->type->add('b');
-        $this->assertEquals(['a','b'], $this->type->getList());
+        $this->assertEquals(['a', 'b'], $this->type->getList());
     }
 }

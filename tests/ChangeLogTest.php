@@ -29,24 +29,36 @@ class ChangeLogTest extends TestCase
         $description = 'This is description';
         $formatter = new DefaultFormatter('url');
 
-        $this->assertEquals(
-            $title,
-            getProperty($this->changeLog, 'title'),
-            'Test title'
-        );
-        $this->assertEquals(
-            $description,
-            getProperty($this->changeLog, 'description'),
-            'Test description'
-        );
-        $this->assertEquals(
-            $formatter,
-            getProperty($this->changeLog, 'formatter'),
-            'Test formatter'
-        );
+        try {
+            $this->assertEquals(
+                $title,
+                getProperty($this->changeLog, 'title'),
+                'Test title'
+            );
+        } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
+        }
+        try {
+            $this->assertEquals(
+                $description,
+                getProperty($this->changeLog, 'description'),
+                'Test description'
+            );
+        } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
+        }
+        try {
+            $this->assertEquals(
+                $formatter,
+                getProperty($this->changeLog, 'formatter'),
+                'Test formatter'
+            );
+        } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
+        }
     }
 
-    public function testAddRelease()
+    public function testAddReleaseData()
     {
         $r1 = new Release('tag', '2017-01-01');
         $r2 = new Release('tag', '2017-01-02');
@@ -57,9 +69,23 @@ class ChangeLogTest extends TestCase
             ->addRelease($r2)
             ->addRelease($r3);
 
+        try {
+            $this->assertEquals(
+                [$r1, $r2, $r3],
+                getProperty($this->changeLog, 'releases')
+            );
+        } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testAddReleaseReturnSelf()
+    {
+        $r1 = new Release('tag', '2017-01-01');
+
         $this->assertEquals(
-            [$r1, $r2, $r3],
-            getProperty($this->changeLog, 'releases')
+            $this->changeLog,
+            $this->changeLog->addRelease($r1)
         );
     }
 

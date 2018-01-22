@@ -42,7 +42,7 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderTitle(string $title, string $description): string
     {
-        return '# ' . $title . \PHP_EOL . $description . \PHP_EOL.\PHP_EOL;
+        return '# ' . $title . \PHP_EOL . $description . \PHP_EOL . \PHP_EOL;
     }
 
     /**
@@ -109,7 +109,7 @@ class DefaultFormatter implements FormatterInterface
      */
     private function renderLink(Release $release, Release $nextRelease)
     {
-        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag}".\PHP_EOL;
+        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag}" . \PHP_EOL;
         $this->links .= $link;
     }
 
