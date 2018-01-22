@@ -26,7 +26,7 @@ if (!function_exists('callMethod')) {
 if (!function_exists('getProperty')) {
     /**
      * Get protected or private property
-     * ssem can this phpunit readAttribute();
+     * seem can this phpunit readAttribute();
      *
      * @param $object
      * @param $propertyName
