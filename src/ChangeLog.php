@@ -64,7 +64,7 @@ class ChangeLog
     /**
      * @return string
      */
-    public function rand(): string
+    public function render(): string
     {
         return $this->formatter->render(
             $this->title,

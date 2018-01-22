@@ -37,6 +37,6 @@ $c->addRelease(
 );
 
 
-print($c->rand());
+print($c->render());
 // or save
-file_put_contents(__DIR__ . '/../CHANGELOG.md', $c->rand());
+file_put_contents(__DIR__ . '/../CHANGELOG.md', $c->render());
