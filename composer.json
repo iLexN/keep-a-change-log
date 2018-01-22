@@ -40,7 +40,7 @@
             "@test-dev"
         ],
         "cs-fix": "php-cs-fixer fix",
-        "phpcs": "phpcs --standard=PSR2 src tests",
+        "phpcs": "phpcs",
         "docs" : "@php ./sami.phar update .sami",
         "test-dev" : "phpunit --coverage-text",
         "test": "phpunit"
