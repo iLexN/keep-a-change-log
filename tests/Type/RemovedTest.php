@@ -11,6 +11,6 @@ class RemovedTest extends TestCase
     public function testGetTitle()
     {
         $class = new Removed();
-        $this->assertSame('Removed', $class->getTitle());
+        $this->assertEquals('Removed', $class->getTitle());
     }
 }

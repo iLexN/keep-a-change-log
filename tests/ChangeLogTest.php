@@ -30,7 +30,7 @@ class ChangeLogTest extends TestCase
         $formatter = new DefaultFormatter('url');
 
         try {
-            $this->assertSame(
+            $this->assertEquals(
                 $title,
                 getProperty($this->changeLog, 'title'),
                 'Test title'
@@ -39,7 +39,7 @@ class ChangeLogTest extends TestCase
             $this->fail($e->getMessage());
         }
         try {
-            $this->assertSame(
+            $this->assertEquals(
                 $description,
                 getProperty($this->changeLog, 'description'),
                 'Test description'
@@ -48,7 +48,7 @@ class ChangeLogTest extends TestCase
             $this->fail($e->getMessage());
         }
         try {
-            $this->assertSame(
+            $this->assertEquals(
                 $formatter,
                 getProperty($this->changeLog, 'formatter'),
                 'Test formatter'
@@ -70,7 +70,7 @@ class ChangeLogTest extends TestCase
             ->addRelease($r3);
 
         try {
-            $this->assertSame(
+            $this->assertEquals(
                 [$r1, $r2, $r3],
                 getProperty($this->changeLog, 'releases')
             );
@@ -83,7 +83,7 @@ class ChangeLogTest extends TestCase
     {
         $r1 = new Release('tag', '2017-01-01');
 
-        $this->assertSame(
+        $this->assertEquals(
             $this->changeLog,
             $this->changeLog->addRelease($r1)
         );
@@ -114,6 +114,6 @@ class ChangeLogTest extends TestCase
 
         $result = $this->changeLog->render();
         $expected = file_get_contents(__DIR__ . '/expected/change-log.md');
-        $this->assertSame($expected, $result, 'Test ChangeLog Full Render');
+        $this->assertEquals($expected, $result, 'Test ChangeLog Full Render');
     }
 }

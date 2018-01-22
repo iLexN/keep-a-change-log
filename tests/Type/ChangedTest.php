@@ -11,6 +11,6 @@ class ChangedTest extends TestCase
     public function testGetTitle()
     {
         $class = new Changed();
-        $this->assertSame('Changed', $class->getTitle());
+        $this->assertEquals('Changed', $class->getTitle());
     }
 }

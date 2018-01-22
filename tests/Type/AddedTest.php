@@ -11,6 +11,6 @@ class AddedTest extends TestCase
     public function testGetTitle()
     {
         $class = new Added();
-        $this->assertSame('Added', $class->getTitle());
+        $this->assertEquals('Added', $class->getTitle());
     }
 }

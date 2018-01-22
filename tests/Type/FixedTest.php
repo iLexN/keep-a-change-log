@@ -11,6 +11,6 @@ class FixedTest extends TestCase
     public function testGetTitle()
     {
         $class = new Fixed();
-        $this->assertSame('Fixed', $class->getTitle());
+        $this->assertEquals('Fixed', $class->getTitle());
     }
 }
