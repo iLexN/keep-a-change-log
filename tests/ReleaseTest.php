@@ -37,12 +37,12 @@ class ReleaseTest extends TestCase
 
     public function testConstruct()
     {
-        $this->assertEquals(
+        $this->assertSame(
             self::TAG,
             $this->release->tag,
             'Release tag version test'
         );
-        $this->assertEquals(
+        $this->assertSame(
             self::DATE,
             $this->release->date,
             'Release date test'
@@ -62,7 +62,7 @@ class ReleaseTest extends TestCase
 
         $expected = ['1' => $this->getExpectedResult()[1]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature added'
@@ -74,7 +74,7 @@ class ReleaseTest extends TestCase
     public function testAddChangeListReturnSelf()
     {
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $this->release,
                 callMethod($this->release, 'addChangeList', [1, 'add2']),
                 'Test return self'
@@ -99,7 +99,7 @@ class ReleaseTest extends TestCase
         $this->release->security('security1');
         $this->release->security('security2');
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->getExpectedResult(),
             $this->release->getChangeList(),
             'Release get change list'
@@ -113,7 +113,7 @@ class ReleaseTest extends TestCase
 
         $expected = ['1' => $this->getExpectedResult()[1]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature added'
@@ -122,7 +122,7 @@ class ReleaseTest extends TestCase
         }
 
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $this->release,
                 callMethod($this->release, 'added', [1, 'add2']),
                 'Test return self'
@@ -138,7 +138,7 @@ class ReleaseTest extends TestCase
 
         $expected = ['2' => $this->getExpectedResult()[2]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature changed'
@@ -147,7 +147,7 @@ class ReleaseTest extends TestCase
         }
 
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $this->release,
                 callMethod($this->release, 'changed', [1, 'add2']),
                 'Test return self'
@@ -163,7 +163,7 @@ class ReleaseTest extends TestCase
 
         $expected = ['3' => $this->getExpectedResult()[3]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature deprecated'
@@ -172,7 +172,7 @@ class ReleaseTest extends TestCase
         }
 
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $this->release,
                 callMethod($this->release, 'deprecated', [1, 'add2']),
                 'Test return self'
@@ -188,7 +188,7 @@ class ReleaseTest extends TestCase
 
         $expected = [4 => $this->getExpectedResult()[4]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature removed'
@@ -197,7 +197,7 @@ class ReleaseTest extends TestCase
         }
 
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $this->release,
                 callMethod($this->release, 'removed', [1, 'add2']),
                 'Test return self'
@@ -213,7 +213,7 @@ class ReleaseTest extends TestCase
 
         $expected = [5 => $this->getExpectedResult()[5]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature fixed'
@@ -229,7 +229,7 @@ class ReleaseTest extends TestCase
 
         $expected = [6 => $this->getExpectedResult()[6]];
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $expected,
                 getProperty($this->release, 'changeList'),
                 'Release feature fixed'
@@ -237,7 +237,7 @@ class ReleaseTest extends TestCase
         } catch (\ReflectionException $e) {
         }
         try {
-            $this->assertEquals(
+            $this->assertSame(
                 $this->release,
                 callMethod($this->release, 'security', [1, 'add2']),
                 'Test return self'

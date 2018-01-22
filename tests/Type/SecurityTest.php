@@ -11,6 +11,6 @@ class SecurityTest extends TestCase
     public function testGetTitle()
     {
         $class = new Security();
-        $this->assertEquals('Security', $class->getTitle());
+        $this->assertSame('Security', $class->getTitle());
     }
 }

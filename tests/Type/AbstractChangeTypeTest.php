@@ -28,13 +28,13 @@ class AbstractChangeTypeTest extends TestCase
         } catch (\ReflectionException $e) {
             $return = '';
         }
-        $this->assertEquals(['a', 'b'], $return);
+        $this->assertSame(['a', 'b'], $return);
     }
 
     public function testGetList()
     {
         $this->type->add('a');
         $this->type->add('b');
-        $this->assertEquals(['a', 'b'], $this->type->getList());
+        $this->assertSame(['a', 'b'], $this->type->getList());
     }
 }

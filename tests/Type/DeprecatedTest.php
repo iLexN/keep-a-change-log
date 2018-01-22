@@ -11,6 +11,6 @@ class DeprecatedTest extends TestCase
     public function testGetTitle()
     {
         $class = new Deprecated();
-        $this->assertEquals('Deprecated', $class->getTitle());
+        $this->assertSame('Deprecated', $class->getTitle());
     }
 }

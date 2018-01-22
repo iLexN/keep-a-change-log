@@ -29,7 +29,7 @@ class DefaultFormatterTest extends TestCase
         } catch (\ReflectionException $e) {
             $this->fail($e->getMessage());
         }
-        $this->assertEquals('url', $return);
+        $this->assertSame('url', $return);
     }
 
     public function testRenderTitle()
@@ -48,7 +48,7 @@ class DefaultFormatterTest extends TestCase
         }
 
         $expected = '# ' . $title . \PHP_EOL . $description . \PHP_EOL . \PHP_EOL;
-        $this->assertEquals($expected, $return);
+        $this->assertSame($expected, $return);
     }
 
     public function testGetLinks()
@@ -62,7 +62,7 @@ class DefaultFormatterTest extends TestCase
             $this->fail($e->getMessage());
         }
 
-        $this->assertEquals($links, $return);
+        $this->assertSame($links, $return);
     }
 
     public function testReleases()
@@ -87,7 +87,7 @@ class DefaultFormatterTest extends TestCase
         }
 
         $expected = file_get_contents(__DIR__ . '/expected/render-releases-result.md');
-        $this->assertEquals($expected, $return);
+        $this->assertSame($expected, $return);
     }
 
     public function testRelease()
@@ -104,7 +104,7 @@ class DefaultFormatterTest extends TestCase
         }
 
         $expected = file_get_contents(__DIR__ . '/expected/render-release-result.md');
-        $this->assertEquals($expected, $return);
+        $this->assertSame($expected, $return);
     }
 
     public function testRenderChanges()
@@ -120,7 +120,7 @@ class DefaultFormatterTest extends TestCase
         }
 
         $expected = file_get_contents(__DIR__ . '/expected/render-changes-result.md');
-        $this->assertEquals($expected, $return);
+        $this->assertSame($expected, $return);
     }
 
     public function testRenderLink()
@@ -137,7 +137,7 @@ class DefaultFormatterTest extends TestCase
         }
 
         $expected = '[tag1]: url/tag2...tag1' . \PHP_EOL;
-        $this->assertEquals($expected, $return, 'Test 2 Tag');
+        $this->assertSame($expected, $return, 'Test 2 Tag');
         try {
             callMethod($this->formatter, 'renderLink', [$release2, $release3]);
             $return = getProperty($this->formatter, 'links');
@@ -147,7 +147,7 @@ class DefaultFormatterTest extends TestCase
         }
 
         $expected .= '[tag2]: url/tag3...tag2' . \PHP_EOL;
-        $this->assertEquals($expected, $return, 'Test 3 tag');
+        $this->assertSame($expected, $return, 'Test 3 tag');
     }
 
     public function testRender()
@@ -175,6 +175,6 @@ class DefaultFormatterTest extends TestCase
             ]
         );
         $expected = file_get_contents(__DIR__ . '/expected/render-result.md');
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 }
