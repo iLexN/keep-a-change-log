@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2018-01-22
+### Added
+- Add test for 100% code coverage
+- Add CI config for travis-ci, coveralls.io and scrutinizer-ci
+
 ## [0.0.3] - 2018-01-20
 ### Added
 - Add Docs
@@ -29,5 +34,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - First release
 
+[1.0.0]: https://github.com/iLexN/keep-a-change-log/compare/0.0.3...1.0.0
 [0.0.3]: https://github.com/iLexN/keep-a-change-log/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/iLexN/keep-a-change-log/compare/0.0.1...0.0.2

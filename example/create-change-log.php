@@ -16,8 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 );
 
 $c->addRelease(
-    (new Release('HEAD', ''))
-        ->fixed('Change Log link format')
+    (new Release('1.0.0', '2018-01-22'))
+        ->added('Add test for 100% code coverage')
+        ->added('Add CI config for travis-ci, coveralls.io and scrutinizer-ci')
 )->addRelease(
     (new Release('0.0.3', '2018-01-20'))
         ->added('Add Docs')
@@ -39,4 +40,4 @@ $c->addRelease(
 
 print($c->render());
 // or save
-file_put_contents(__DIR__ . '/../CHANGELOG.md', $c->render());
+file_put_contents(__DIR__.'/../CHANGELOG.md', $c->render());
