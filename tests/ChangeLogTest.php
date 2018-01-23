@@ -4,6 +4,7 @@ namespace Ilex\ChangeLog\Tests;
 
 use Ilex\ChangeLog\ChangeLog;
 use Ilex\ChangeLog\Formatter\DefaultFormatter;
+use Ilex\ChangeLog\Formatter\FormatterInterface;
 use Ilex\ChangeLog\Release;
 use PHPUnit\Framework\TestCase;
 
@@ -89,6 +90,16 @@ class ChangeLogTest extends TestCase
         );
     }
 
+    public function testAddReleaseReturnSelfWithMock()
+    {
+        /** @var Release $mockRelease */
+        $mockRelease = $this->createMock(Release::class);
+        $this->assertEquals(
+            $this->changeLog,
+            $this->changeLog->addRelease($mockRelease)
+        );
+    }
+
     public function testRender()
     {
         $this->changeLog->addRelease(
@@ -115,5 +126,15 @@ class ChangeLogTest extends TestCase
         $result = $this->changeLog->render();
         $expected = file_get_contents(__DIR__.'/expected/change-log.md');
         $this->assertEquals($expected, $result, 'Test ChangeLog Full Render');
+    }
+
+    public function testRender3()
+    {
+        $mock = $this->createMock(FormatterInterface::class);
+        $mock->expects($this->once())
+            ->method('render')
+            ->willReturn('abc');
+        $changelog = new ChangeLog('a', 'b', $mock);
+        $this->assertEquals('abc', $changelog->render());
     }
 }

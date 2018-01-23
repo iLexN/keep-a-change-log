@@ -54,10 +54,12 @@ class ReleaseTest extends TestCase
         try {
             callMethod($this->release, 'addChangeList', [1, 'add1']);
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
         try {
             callMethod($this->release, 'addChangeList', [1, 'add2']);
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
 
         $expected = ['1' => $this->getExpectedResult()[1]];
@@ -68,6 +70,7 @@ class ReleaseTest extends TestCase
                 'Release feature added'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
@@ -119,6 +122,7 @@ class ReleaseTest extends TestCase
                 'Release feature added'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
 
         try {
@@ -128,6 +132,7 @@ class ReleaseTest extends TestCase
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
@@ -144,6 +149,7 @@ class ReleaseTest extends TestCase
                 'Release feature changed'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
 
         try {
@@ -153,6 +159,7 @@ class ReleaseTest extends TestCase
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
@@ -169,6 +176,7 @@ class ReleaseTest extends TestCase
                 'Release feature deprecated'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
 
         try {
@@ -178,6 +186,7 @@ class ReleaseTest extends TestCase
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
@@ -203,6 +212,7 @@ class ReleaseTest extends TestCase
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
@@ -219,6 +229,7 @@ class ReleaseTest extends TestCase
                 'Release feature fixed'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
@@ -235,6 +246,7 @@ class ReleaseTest extends TestCase
                 'Release feature fixed'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
         try {
             $this->assertEquals(
@@ -243,6 +255,7 @@ class ReleaseTest extends TestCase
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
