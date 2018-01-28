@@ -5,14 +5,14 @@ if (!function_exists('callMethod')) {
     /**
      * Call protected or private method
      *
-     * @param $object
-     * @param $methodName
+     * @param mixed $object
+     * @param string $methodName
      * @param array $arguments
      *
      * @return mixed
      * @throws ReflectionException
      */
-    function callMethod($object, $methodName, array $arguments = [])
+    function callMethod($object, string $methodName, array $arguments = [])
     {
         $class = new ReflectionClass($object);
         $method = $class->getMethod($methodName);
@@ -28,13 +28,13 @@ if (!function_exists('getProperty')) {
      * Get protected or private property
      * seem can this phpunit readAttribute();
      *
-     * @param $object
-     * @param $propertyName
+     * @param mixed $object
+     * @param string $propertyName
      *
      * @return mixed
      * @throws ReflectionException
      */
-    function getProperty($object, $propertyName)
+    function getProperty($object, string $propertyName)
     {
         $reflection = new ReflectionClass($object);
         $property = $reflection->getProperty($propertyName);
@@ -47,13 +47,13 @@ if (!function_exists('setProperty')) {
     /**
      * Set protected or private property
      *
-     * @param $object
-     * @param $propertyName
-     * @param $propertyValue
+     * @param mixed $object
+     * @param string $propertyName
+     * @param mixed $propertyValue
      *
      * @throws ReflectionException
      */
-    function setProperty($object, $propertyName, $propertyValue)
+    function setProperty($object, string $propertyName, $propertyValue)
     {
         $reflection = new \ReflectionClass($object);
         $property = $reflection->getProperty($propertyName);

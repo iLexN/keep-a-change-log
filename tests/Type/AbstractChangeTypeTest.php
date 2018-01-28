@@ -23,10 +23,11 @@ class AbstractChangeTypeTest extends TestCase
     {
         $this->type->add('a');
         $this->type->add('b');
+        $return = '';
         try {
             $return = getProperty($this->type, 'list');
         } catch (\ReflectionException $e) {
-            $return = '';
+            $this->fail($e->getMessage());
         }
         $this->assertEquals(['a', 'b'], $return);
     }
