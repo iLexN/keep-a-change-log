@@ -7,11 +7,6 @@ namespace Ilex\ChangeLog\Type;
  *
  * @package Ilex\ChangeLog\Type
  */
-/**
- * Class ChangeTypeFactory
- *
- * @package Ilex\ChangeLog\Type
- */
 class ChangeTypeFactory implements ChangeTypeFactoryInterface
 {
 
