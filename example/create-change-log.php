@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 $c->addRelease(
     (new Release('1.1.0', '2018-02-03'))
         ->added('Add `Type` factory Interface for easy extend')
+        ->removed('Remove PHP 7.0 support')
 )->addRelease(
     (new Release('1.0.0', '2018-01-22'))
         ->added('Add test for 100% code coverage')

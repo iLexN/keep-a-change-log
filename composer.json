@@ -21,8 +21,11 @@
             "tests/helper.php"
         ]
     },
+    "require":{
+        "php": ">=7.1"
+    },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.10",
+        "friendsofphp/php-cs-fixer": "2.10.0",
         "phpstan/phpstan": "^0.9.1",
         "phpstan/phpstan-phpunit": "^0.9.3",
         "phpstan/phpstan-strict-rules": "^0.9.0",
