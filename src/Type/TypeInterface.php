@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Type;
 
@@ -10,13 +9,7 @@ namespace Ilex\ChangeLog\Type;
  */
 interface TypeInterface
 {
-
-    /**
-     * @param string $description
-     *
-     * @return void
-     */
-    public function add(string $description);
+    public function add(string $description): void;
 
     /**
      * get the title of the change

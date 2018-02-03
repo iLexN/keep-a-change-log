@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Tests\Type;
 
@@ -8,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class FixedTest extends TestCase
 {
-    public function testGetTitle()
+    public function testGetTitle(): void
     {
         $class = new Fixed();
         $this->assertEquals('Fixed', $class->getTitle());

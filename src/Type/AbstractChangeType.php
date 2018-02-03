@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Type;
 
@@ -16,19 +15,11 @@ abstract class AbstractChangeType implements TypeInterface
      */
     public $list = [];
 
-    /**
-     * @param string $description
-     *
-     * @return void
-     */
-    public function add(string $description)
+    public function add(string $description): void
     {
         $this->list[] = $description;
     }
 
-    /**
-     * @return string
-     */
     abstract public function getTitle(): string;
 
     /**

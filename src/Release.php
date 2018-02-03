@@ -1,10 +1,9 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog;
 
 use Ilex\ChangeLog\Type\ChangeTypeFactory;
-use Ilex\ChangeLog\Type\TypeInterface;
+use Ilex\ChangeLog\Type\ChangeTypeFactoryInterface;
 
 /**
  * Class Release
@@ -25,20 +24,38 @@ class Release
     public $date;
 
     /**
-     * @var TypeInterface[]
+     * @var \Ilex\ChangeLog\Type\TypeInterface[]
      */
     private $changeList = [];
+
+    /**
+     * @var \Ilex\ChangeLog\Type\ChangeTypeFactoryInterface
+     */
+    private $factory;
 
     /**
      * Release constructor.
      *
      * @param string $tag
      * @param string $date
+     * @param \Ilex\ChangeLog\Type\ChangeTypeFactoryInterface|null $factory
      */
-    public function __construct(string $tag, string $date)
-    {
+    public function __construct(
+        string $tag,
+        string $date,
+        ?ChangeTypeFactoryInterface $factory = null
+    ) {
         $this->tag = $tag;
         $this->date = $date;
+        $this->factory = $this->setFactory($factory);
+    }
+
+    private function setFactory(?ChangeTypeFactoryInterface $factory): ChangeTypeFactoryInterface
+    {
+        if (null === $factory) {
+            return new ChangeTypeFactory();
+        }
+        return $factory;
     }
 
 
@@ -46,12 +63,12 @@ class Release
      * @param int $key
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     private function addChangeList(int $key, string $description): self
     {
         if (!\array_key_exists($key, $this->changeList)) {
-            $this->changeList[$key] = ChangeTypeFactory::factory($key);
+            $this->changeList[$key] = $this->factory->create($key);
         }
         $this->changeList[$key]->add($description);
         return $this;
@@ -68,7 +85,7 @@ class Release
     /**
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     public function added(string $description): self
     {
@@ -78,7 +95,7 @@ class Release
     /**
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     public function changed(string $description): self
     {
@@ -88,7 +105,7 @@ class Release
     /**
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     public function deprecated(string $description): self
     {
@@ -101,7 +118,7 @@ class Release
     /**
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     public function removed(string $description): self
     {
@@ -111,7 +128,7 @@ class Release
     /**
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     public function fixed(string $description): self
     {
@@ -121,7 +138,7 @@ class Release
     /**
      * @param string $description
      *
-     * @return Release
+     * @return \Ilex\ChangeLog\Release
      */
     public function security(string $description): self
     {

@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 );
 
 $c->addRelease(
+    (new Release('1.1.0', '2018-02-03'))
+        ->added('Add `Type` factory Interface for easy extend')
+)->addRelease(
     (new Release('1.0.0', '2018-01-22'))
         ->added('Add test for 100% code coverage')
         ->added('Add CI config for travis-ci, coveralls.io and scrutinizer-ci')

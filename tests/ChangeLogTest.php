@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Tests;
 
@@ -7,16 +7,18 @@ use Ilex\ChangeLog\Formatter\DefaultFormatter;
 use Ilex\ChangeLog\Formatter\FormatterInterface;
 use Ilex\ChangeLog\Release;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
+use function getProperty;
 
 class ChangeLogTest extends TestCase
 {
 
     /**
-     * @var ChangeLog
+     * @var \Ilex\ChangeLog\ChangeLog
      */
     private $changeLog;
 
-    protected function setup()
+    protected function setup(): void
     {
         $title = 'Title';
         $description = 'This is description';
@@ -24,7 +26,7 @@ class ChangeLogTest extends TestCase
         $this->changeLog = new ChangeLog($title, $description, $formatter);
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $title = 'Title';
         $description = 'This is description';
@@ -42,24 +44,24 @@ class ChangeLogTest extends TestCase
         try {
             $this->assertEquals(
                 $description,
-                getProperty($this->changeLog, 'description'),
+                \getProperty($this->changeLog, 'description'),
                 'Test description'
             );
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             $this->fail($e->getMessage());
         }
         try {
             $this->assertEquals(
                 $formatter,
-                getProperty($this->changeLog, 'formatter'),
+                \getProperty($this->changeLog, 'formatter'),
                 'Test formatter'
             );
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             $this->fail($e->getMessage());
         }
     }
 
-    public function testAddReleaseData()
+    public function testAddReleaseData(): void
     {
         $r1 = new Release('tag', '2017-01-01');
         $r2 = new Release('tag', '2017-01-02');
@@ -73,14 +75,14 @@ class ChangeLogTest extends TestCase
         try {
             $this->assertEquals(
                 [$r1, $r2, $r3],
-                getProperty($this->changeLog, 'releases')
+                \getProperty($this->changeLog, 'releases')
             );
         } catch (\ReflectionException $e) {
             $this->fail($e->getMessage());
         }
     }
 
-    public function testAddReleaseReturnSelf()
+    public function testAddReleaseReturnSelf(): void
     {
         $r1 = new Release('tag', '2017-01-01');
 
@@ -90,9 +92,9 @@ class ChangeLogTest extends TestCase
         );
     }
 
-    public function testAddReleaseReturnSelfWithMock()
+    public function testAddReleaseReturnSelfWithMock(): void
     {
-        /** @var Release $mockRelease */
+        /** @var \Ilex\ChangeLog\Release $mockRelease */
         $mockRelease = $this->createMock(Release::class);
         $this->assertEquals(
             $this->changeLog,
@@ -100,7 +102,7 @@ class ChangeLogTest extends TestCase
         );
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $this->changeLog->addRelease(
             (new Release('0.0.4', '2018-01-22'))
@@ -124,11 +126,11 @@ class ChangeLogTest extends TestCase
         );
 
         $result = $this->changeLog->render();
-        $expected = file_get_contents(__DIR__.'/expected/change-log.md');
+        $expected = \file_get_contents(__DIR__.'/expected/change-log.md');
         $this->assertEquals($expected, $result, 'Test ChangeLog Full Render');
     }
 
-    public function testRender3()
+    public function testRender3(): void
     {
         $mock = $this->createMock(FormatterInterface::class);
         $mock->expects($this->once())

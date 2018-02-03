@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog;
 
@@ -24,7 +23,7 @@ class ChangeLog
     private $description;
 
     /**
-     * @var FormatterInterface
+     * @var \Ilex\ChangeLog\Formatter\FormatterInterface
      */
     private $formatter;
 
@@ -38,7 +37,7 @@ class ChangeLog
      *
      * @param string $title
      * @param string $description
-     * @param FormatterInterface $formatter
+     * @param \Ilex\ChangeLog\Formatter\FormatterInterface $formatter
      */
     public function __construct(
         string $title,
@@ -51,9 +50,9 @@ class ChangeLog
     }
 
     /**
-     * @param Release $release
+     * @param \Ilex\ChangeLog\Release $release
      *
-     * @return ChangeLog
+     * @return \Ilex\ChangeLog\ChangeLog
      */
     public function addRelease(Release $release): self
     {

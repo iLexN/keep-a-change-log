@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Type;
 
@@ -13,7 +12,7 @@ namespace Ilex\ChangeLog\Type;
  *
  * @package Ilex\ChangeLog\Type
  */
-class ChangeTypeFactory
+class ChangeTypeFactory implements ChangeTypeFactoryInterface
 {
 
     /**
@@ -46,12 +45,7 @@ class ChangeTypeFactory
      */
     const SECURITY = 6;
 
-    /**
-     * @param int $type
-     *
-     * @return TypeInterface
-     */
-    public static function factory(int $type): TypeInterface
+    public function create(int $type): TypeInterface
     {
         switch ($type) {
             case self::ADDED:

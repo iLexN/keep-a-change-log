@@ -1,11 +1,11 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Tests;
 
 use Ilex\ChangeLog\Release;
 use Ilex\ChangeLog\Type\Added;
 use Ilex\ChangeLog\Type\Changed;
+use Ilex\ChangeLog\Type\ChangeTypeFactory;
 use Ilex\ChangeLog\Type\Deprecated;
 use Ilex\ChangeLog\Type\Fixed;
 use Ilex\ChangeLog\Type\Removed;
@@ -16,7 +16,7 @@ class ReleaseTest extends TestCase
 {
 
     /**
-     * @var Release
+     * @var \Ilex\ChangeLog\Release
      */
     private $release;
 
@@ -30,12 +30,12 @@ class ReleaseTest extends TestCase
      */
     const DATE = '2017-06-07';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->release = new Release(self::TAG, self::DATE);
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $this->assertEquals(
             self::TAG,
@@ -49,15 +49,29 @@ class ReleaseTest extends TestCase
         );
     }
 
-    public function testAddChangeList()
+    public function testConstructWithFactory(): void
+    {
+        $factory = new ChangeTypeFactory();
+        $release = new Release(self::TAG, self::DATE, $factory);
+        try {
+            $this->assertEquals(
+                $factory,
+                \getProperty($release, 'factory')
+            );
+        } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testAddChangeList(): void
     {
         try {
-            callMethod($this->release, 'addChangeList', [1, 'add1']);
+            \callMethod($this->release, 'addChangeList', [1, 'add1']);
         } catch (\ReflectionException $e) {
             $this->fail($e->getMessage());
         }
         try {
-            callMethod($this->release, 'addChangeList', [1, 'add2']);
+            \callMethod($this->release, 'addChangeList', [1, 'add2']);
         } catch (\ReflectionException $e) {
             $this->fail($e->getMessage());
         }
@@ -66,7 +80,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature added'
             );
         } catch (\ReflectionException $e) {
@@ -74,20 +88,21 @@ class ReleaseTest extends TestCase
         }
     }
 
-    public function testAddChangeListReturnSelf()
+    public function testAddChangeListReturnSelf(): void
     {
         try {
             $this->assertEquals(
                 $this->release,
-                callMethod($this->release, 'addChangeList', [1, 'add2']),
+                \callMethod($this->release, 'addChangeList', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
+            $this->fail($e->getMessage());
         }
     }
 
 
-    public function testGetChangeList()
+    public function testGetChangeList(): void
     {
         $this->release->added('add1');
         $this->release->added('add2');
@@ -109,7 +124,7 @@ class ReleaseTest extends TestCase
         );
     }
 
-    public function testAdded()
+    public function testAdded(): void
     {
         $this->release->added('add1');
         $this->release->added('add2');
@@ -118,7 +133,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature added'
             );
         } catch (\ReflectionException $e) {
@@ -128,7 +143,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $this->release,
-                callMethod($this->release, 'added', [1, 'add2']),
+                \callMethod($this->release, 'added', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
@@ -136,7 +151,7 @@ class ReleaseTest extends TestCase
         }
     }
 
-    public function testChanged()
+    public function testChanged(): void
     {
         $this->release->changed('change1');
         $this->release->changed('change2');
@@ -145,7 +160,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature changed'
             );
         } catch (\ReflectionException $e) {
@@ -155,7 +170,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $this->release,
-                callMethod($this->release, 'changed', [1, 'add2']),
+                \callMethod($this->release, 'changed', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
@@ -163,7 +178,7 @@ class ReleaseTest extends TestCase
         }
     }
 
-    public function testDeprecated()
+    public function testDeprecated(): void
     {
         $this->release->deprecated('Deprecated1');
         $this->release->deprecated('Deprecated2');
@@ -172,7 +187,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature deprecated'
             );
         } catch (\ReflectionException $e) {
@@ -182,7 +197,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $this->release,
-                callMethod($this->release, 'deprecated', [1, 'add2']),
+                \callMethod($this->release, 'deprecated', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
@@ -190,7 +205,7 @@ class ReleaseTest extends TestCase
         }
     }
 
-    public function testRemoved()
+    public function testRemoved(): void
     {
         $this->release->removed('Removed1');
         $this->release->removed('Removed2');
@@ -199,7 +214,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature removed'
             );
         } catch (\ReflectionException $e) {
@@ -208,7 +223,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $this->release,
-                callMethod($this->release, 'removed', [1, 'add2']),
+                \callMethod($this->release, 'removed', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
@@ -216,7 +231,7 @@ class ReleaseTest extends TestCase
         }
     }
 
-    public function testFixed()
+    public function testFixed(): void
     {
         $this->release->fixed('fixed1');
         $this->release->fixed('fixed2');
@@ -225,7 +240,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature fixed'
             );
         } catch (\ReflectionException $e) {
@@ -233,7 +248,7 @@ class ReleaseTest extends TestCase
         }
     }
 
-    public function testSecurity()
+    public function testSecurity(): void
     {
         $this->release->security('security1');
         $this->release->security('security2');
@@ -242,7 +257,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $expected,
-                getProperty($this->release, 'changeList'),
+                \getProperty($this->release, 'changeList'),
                 'Release feature fixed'
             );
         } catch (\ReflectionException $e) {
@@ -251,7 +266,7 @@ class ReleaseTest extends TestCase
         try {
             $this->assertEquals(
                 $this->release,
-                callMethod($this->release, 'security', [1, 'add2']),
+                \callMethod($this->release, 'security', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {

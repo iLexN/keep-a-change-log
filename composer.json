@@ -25,8 +25,9 @@
         "friendsofphp/php-cs-fixer": "^2.10",
         "phpstan/phpstan": "^0.9.1",
         "phpstan/phpstan-phpunit": "^0.9.3",
+        "phpstan/phpstan-strict-rules": "^0.9.0",
         "phpunit/phpunit": "^6.5",
-        "squizlabs/php_codesniffer": "3.1.1"
+        "squizlabs/php_codesniffer": "^3.2"
     },
     "config": {
         "sort-packages": true

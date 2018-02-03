@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Ilex\ChangeLog\Tests\Type;
 
@@ -8,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class RemovedTest extends TestCase
 {
-    public function testGetTitle()
+    public function testGetTitle(): void
     {
         $class = new Removed();
         $this->assertEquals('Removed', $class->getTitle());
