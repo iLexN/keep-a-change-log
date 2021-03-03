@@ -9,7 +9,7 @@ class RemovedTest extends TestCase
 {
     public function testGetTitle(): void
     {
-        $class = new Removed();
-        $this->assertEquals('Removed', $class->getTitle());
+        $removed = new Removed();
+        self::assertEquals('Removed', $removed->getTitle());
     }
 }

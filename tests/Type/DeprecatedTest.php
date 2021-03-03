@@ -9,7 +9,7 @@ class DeprecatedTest extends TestCase
 {
     public function testGetTitle(): void
     {
-        $class = new Deprecated();
-        $this->assertEquals('Deprecated', $class->getTitle());
+        $deprecated = new Deprecated();
+        self::assertEquals('Deprecated', $deprecated->getTitle());
     }
 }

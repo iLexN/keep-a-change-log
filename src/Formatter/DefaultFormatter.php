@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Ilex\ChangeLog\Formatter;
 
@@ -14,49 +14,27 @@ use Ilex\ChangeLog\Type\TypeInterface;
 class DefaultFormatter implements FormatterInterface
 {
 
-    /**
-     * @var string
-     */
-    private $links = '';
-
-    /**
-     * @var string
-     */
-    private $url;
+    private string $links = '';
 
     /**
      * DefaultFormatter constructor.
-     *
-     * @param string $url
      */
-    public function __construct(string $url)
+    public function __construct(private string $url)
     {
-        $this->url = $url;
     }
 
-    /**
-     * @param string $title
-     * @param string $description
-     *
-     * @return string
-     */
     private function renderTitle(string $title, string $description): string
     {
-        return '# '.$title.\PHP_EOL.$description.\PHP_EOL.\PHP_EOL;
+        return '# ' . $title . \PHP_EOL . $description . \PHP_EOL . \PHP_EOL;
     }
 
-    /**
-     * @return string
-     */
     private function getLinks(): string
     {
         return $this->links;
     }
 
     /**
-     * @param array|Release[] $releases
-     *
-     * @return string
+     * @param array<int,Release> $releases
      */
     private function renderReleases(array $releases): string
     {
@@ -71,54 +49,36 @@ class DefaultFormatter implements FormatterInterface
         return $out;
     }
 
-    /**
-     * @param Release $release
-     *
-     * @return string
-     */
     private function renderRelease(Release $release): string
     {
         $string = '';
-        $string .= "## [{$release->tag}] - $release->date".\PHP_EOL;
+        $string .= sprintf('## [%s] - %s', $release->tag,
+                $release->date) . \PHP_EOL;
         $list = $release->getChangeList();
-        foreach ($list as $change => $changes) {
+        foreach ($list as $changes) {
             $string .= $this->renderChanges($changes);
         }
         return $string;
     }
 
-    /**
-     * @param TypeInterface $changes
-     *
-     * @return string
-     */
-    private function renderChanges(TypeInterface $changes): string
+    private function renderChanges(TypeInterface $type): string
     {
-        $string = "### {$changes->getTitle()}".\PHP_EOL;
-        $listChange = $changes->getList();
+        $string = sprintf('### %s', $type->getTitle()) . \PHP_EOL;
+        $listChange = $type->getList();
         foreach ($listChange as $featureList) {
-            $string .= "- {$featureList}".\PHP_EOL;
+            $string .= sprintf('- %s', $featureList) . \PHP_EOL;
         }
-        $string .= \PHP_EOL;
-        return $string;
+        return $string . \PHP_EOL;
     }
 
-    /**
-     * @param Release $release
-     * @param Release $nextRelease
-     */
-    private function renderLink(Release $release, Release $nextRelease)
+    private function renderLink(Release $release, Release $nextRelease): void
     {
-        $link = "[{$release->tag}]: {$this->url}/{$nextRelease->tag}...{$release->tag}".\PHP_EOL;
+        $link = sprintf('[%s]: %s/%s...%s', $release->tag, $this->url, $nextRelease->tag, $release->tag) . \PHP_EOL;
         $this->links .= $link;
     }
 
     /**
-     * @param string $title
-     * @param string $description
-     * @param array|Release[] $releases
-     *
-     * @return string
+     * @param array<int,Release> $releases
      */
     public function render(
         string $title,

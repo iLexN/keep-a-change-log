@@ -13,13 +13,11 @@ interface TypeInterface
 
     /**
      * get the title of the change
-     *
-     * @return string
      */
     public function getTitle(): string;
 
     /**
-     * @return array
+     * @return array<int,string>
      */
     public function getList(): array;
 }

@@ -11,30 +11,31 @@ class AbstractChangeTypeTest extends TestCase
     /**
      * @var AbstractChangeType
      */
-    private $type;
+    private AbstractChangeType $changeType;
 
-    protected function setUp()
+    protected function setUp():void
     {
-        $this->type = $this->getMockForAbstractClass(AbstractChangeType::class);
+        $this->changeType = $this->getMockForAbstractClass(AbstractChangeType::class);
     }
 
-    public function testAdd()
+    public function testAdd():void
     {
-        $this->type->add('a');
-        $this->type->add('b');
-        $return = '';
+        $this->changeType->add('a');
+        $this->changeType->add('b');
+
+        $return = [];
         try {
-            $return = getProperty($this->type, 'list');
-        } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            $return = get_property($this->changeType, 'list');
+        } catch (\ReflectionException $reflectionException) {
+            self::fail($reflectionException->getMessage());
         }
-        $this->assertEquals(['a', 'b'], $return);
+        self::assertEquals(['a', 'b'], $return);
     }
 
-    public function testGetList()
+    public function testGetList():void
     {
-        $this->type->add('a');
-        $this->type->add('b');
-        $this->assertEquals(['a', 'b'], $this->type->getList());
+        $this->changeType->add('a');
+        $this->changeType->add('b');
+        self::assertEquals(['a', 'b'], $this->changeType->getList());
     }
 }

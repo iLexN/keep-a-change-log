@@ -12,52 +12,50 @@ class ChangeTypeFactory implements ChangeTypeFactoryInterface
 
     /**
      * ADDED
+     * @var int
      */
-    const ADDED = 1;
+    public const ADDED = 1;
 
     /**
      * CHANGED
+     * @var int
      */
-    const CHANGED = 2;
+    public const CHANGED = 2;
 
     /**
      * DEPRECATED
+     * @var int
      */
-    const DEPRECATED = 3;
+    public const DEPRECATED = 3;
 
     /**
      * REMOVED
+     * @var int
      */
-    const REMOVED = 4;
+    public const REMOVED = 4;
 
     /**
      * FIXED
+     * @var int
      */
-    const FIXED = 5;
+    public const FIXED = 5;
 
     /**
      * SECURITY
+     * @var int
      */
-    const SECURITY = 6;
+    public const SECURITY = 6;
 
     public function create(int $type): TypeInterface
     {
-        switch ($type) {
-            case self::ADDED:
-                return new Added();
-            case self::CHANGED:
-                return new Changed();
-            case self:: DEPRECATED:
-                return new Deprecated();
-            case self::REMOVED:
-                return new Removed();
-            case self::FIXED:
-                return new Fixed();
-            case self::SECURITY:
-                return new Security();
-            default:
-                //todo: throw?
-                return new Added();
-        }
+        return match ($type) {
+            //self::ADDED => new Added(),
+            self::CHANGED => new Changed(),
+            self:: DEPRECATED => new Deprecated(),
+            self::REMOVED => new Removed(),
+            self::FIXED => new Fixed(),
+            self::SECURITY => new Security(),
+            default => new Added(),
+        };
     }
 }

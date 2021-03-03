@@ -22,39 +22,23 @@
         ]
     },
     "require":{
-        "php": ">=7.1"
+        "php": ">=8.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.10.0",
-        "phpstan/phpstan": "^0.9.1",
-        "phpstan/phpstan-phpunit": "^0.9.3",
-        "phpstan/phpstan-strict-rules": "^0.9.0",
-        "phpunit/phpunit": "^7.0",
-        "squizlabs/php_codesniffer": "^3.2"
+        "infection/infection": "^0.21.3",
+        "phpstan/phpstan": "^0.12.80",
+        "phpunit/phpunit": "^9.5",
+        "rector/rector": "^0.9.31",
+        "vimeo/psalm": "^4.6"
     },
     "config": {
         "sort-packages": true
     },
     "scripts": {
-        "ci": [
-            "@phpcs",
-            "@test"
-        ],
-        "dev":[
-            "@cs-fix",
-            "@phpcs",
-            "@bug-check",
-            "@test-dev"
-        ],
-        "cs-fix": "php-cs-fixer fix",
-        "phpcs": "phpcs",
-        "bug-check" : "phpstan analyse -l max -c phpstan.neon src tests",
-        "docs" : "@php ./sami.phar update .sami",
-        "test-dev" : "phpunit --coverage-text",
-        "test": "phpunit"
-    },
-    "scripts-descriptions": {
-        "phpcs": "Checks that the application code conforms to coding standard",
-        "test": "Launches the preconfigured PHPUnit"
+        "test-test": "vendor/bin/infection --threads=4",
+        "bug-check": "phpstan analyse -l max src",
+        "psalm": "psalm",
+        "rector-check": "rector process src --config rector-ci.php --dry-run",
+        "rector-fix": "rector process src --config rector-ci.php"
     }
 }

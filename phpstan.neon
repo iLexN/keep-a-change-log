@@ -1,5 +1,11 @@
-includes:
-	- vendor/phpstan/phpstan-phpunit/extension.neon
-	- vendor/phpstan/phpstan-phpunit/rules.neon
-	- vendor/phpstan/phpstan-phpunit/strictRules.neon
-	- vendor/phpstan/phpstan-strict-rules/rules.neon
+parameters:
+	level: max
+	paths:
+		- src
+		- tests
+	ignoreErrors:
+	    -
+	         message: '#has no return typehint specified#'
+	         path: *
+
+

@@ -11,9 +11,9 @@ abstract class AbstractChangeType implements TypeInterface
 {
 
     /**
-     * @var array
+     * @var array<int,string>
      */
-    public $list = [];
+    public array $list = [];
 
     public function add(string $description): void
     {
@@ -23,7 +23,7 @@ abstract class AbstractChangeType implements TypeInterface
     abstract public function getTitle(): string;
 
     /**
-     * @return array
+     * @return array<int,string>
      */
     public function getList(): array
     {

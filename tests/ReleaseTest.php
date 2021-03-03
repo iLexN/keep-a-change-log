@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Ilex\ChangeLog\Tests;
 
@@ -10,6 +10,7 @@ use Ilex\ChangeLog\Type\Deprecated;
 use Ilex\ChangeLog\Type\Fixed;
 use Ilex\ChangeLog\Type\Removed;
 use Ilex\ChangeLog\Type\Security;
+use Ilex\ChangeLog\Type\TypeInterface;
 use PHPUnit\Framework\TestCase;
 
 class ReleaseTest extends TestCase
@@ -37,12 +38,12 @@ class ReleaseTest extends TestCase
 
     public function testConstruct(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             self::TAG,
             $this->release->tag,
             'Release tag version test'
         );
-        $this->assertEquals(
+        self::assertEquals(
             self::DATE,
             $this->release->date,
             'Release date test'
@@ -51,53 +52,53 @@ class ReleaseTest extends TestCase
 
     public function testConstructWithFactory(): void
     {
-        $factory = new ChangeTypeFactory();
-        $release = new Release(self::TAG, self::DATE, $factory);
+        $changeTypeFactory = new ChangeTypeFactory();
+        $release = new Release(self::TAG, self::DATE, $changeTypeFactory);
         try {
-            $this->assertEquals(
-                $factory,
-                \getProperty($release, 'factory')
+            self::assertEquals(
+                $changeTypeFactory,
+                get_property($release, 'changeTypeFactory')
             );
-        } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+        } catch (\ReflectionException $reflectionException) {
+            self::fail($reflectionException->getMessage());
         }
     }
 
     public function testAddChangeList(): void
     {
         try {
-            \callMethod($this->release, 'addChangeList', [1, 'add1']);
+            call_method($this->release, 'addChangeList', [1, 'add1']);
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
         try {
-            \callMethod($this->release, 'addChangeList', [1, 'add2']);
+            call_method($this->release, 'addChangeList', [1, 'add2']);
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected = ['1' => $this->getExpectedResult()[1]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature added'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
     public function testAddChangeListReturnSelf(): void
     {
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $this->release,
-                \callMethod($this->release, 'addChangeList', [1, 'add2']),
+                call_method($this->release, 'addChangeList', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -117,7 +118,7 @@ class ReleaseTest extends TestCase
         $this->release->security('security1');
         $this->release->security('security2');
 
-        $this->assertEquals(
+        self::assertEquals(
             $this->getExpectedResult(),
             $this->release->getChangeList(),
             'Release get change list'
@@ -131,23 +132,23 @@ class ReleaseTest extends TestCase
 
         $expected = ['1' => $this->getExpectedResult()[1]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature added'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $this->release,
-                \callMethod($this->release, 'added', [1, 'add2']),
+                call_method($this->release, 'added', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -158,23 +159,23 @@ class ReleaseTest extends TestCase
 
         $expected = ['2' => $this->getExpectedResult()[2]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature changed'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $this->release,
-                \callMethod($this->release, 'changed', [1, 'add2']),
+                call_method($this->release, 'changed', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -185,23 +186,23 @@ class ReleaseTest extends TestCase
 
         $expected = ['3' => $this->getExpectedResult()[3]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature deprecated'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $this->release,
-                \callMethod($this->release, 'deprecated', [1, 'add2']),
+                call_method($this->release, 'deprecated', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -212,22 +213,22 @@ class ReleaseTest extends TestCase
 
         $expected = [4 => $this->getExpectedResult()[4]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature removed'
             );
-        } catch (\ReflectionException $e) {
+        } catch (\ReflectionException) {
         }
 
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $this->release,
-                \callMethod($this->release, 'removed', [1, 'add2']),
+                call_method($this->release, 'removed', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -238,13 +239,13 @@ class ReleaseTest extends TestCase
 
         $expected = [5 => $this->getExpectedResult()[5]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature fixed'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -255,39 +256,47 @@ class ReleaseTest extends TestCase
 
         $expected = [6 => $this->getExpectedResult()[6]];
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $expected,
-                \getProperty($this->release, 'changeList'),
+                get_property($this->release, 'changeList'),
                 'Release feature fixed'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $this->release,
-                \callMethod($this->release, 'security', [1, 'add2']),
+                call_method($this->release, 'security', [1, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
-    private function getExpectedResult()
+    /**
+     * @return array<int,TypeInterface>
+     */
+    private function getExpectedResult(): array
     {
         $added = new Added();
         $added->add('add1');
         $added->add('add2');
-        $change = new Changed();
-        $change->add('change1');
-        $change->add('change2');
+
+        $changed = new Changed();
+        $changed->add('change1');
+
+        $changed->add('change2');
         $deprecated = new Deprecated();
+
         $deprecated->add('Deprecated1');
         $deprecated->add('Deprecated2');
-        $remove = new Removed();
-        $remove->add('Removed1');
-        $remove->add('Removed2');
+
+        $removed = new Removed();
+        $removed->add('Removed1');
+
+        $removed->add('Removed2');
         $fixed = new Fixed();
         $fixed->add('fixed1');
         $fixed->add('fixed2');
@@ -297,9 +306,9 @@ class ReleaseTest extends TestCase
 
         return [
             1 => $added,
-            2 => $change,
+            2 => $changed,
             3 => $deprecated,
-            4 => $remove,
+            4 => $removed,
             5 => $fixed,
             6 => $security,
         ];

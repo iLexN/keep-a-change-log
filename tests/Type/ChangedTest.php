@@ -9,7 +9,7 @@ class ChangedTest extends TestCase
 {
     public function testGetTitle(): void
     {
-        $class = new Changed();
-        $this->assertEquals('Changed', $class->getTitle());
+        $changed = new Changed();
+        self::assertEquals('Changed', $changed->getTitle());
     }
 }
