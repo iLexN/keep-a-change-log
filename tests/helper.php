@@ -50,7 +50,7 @@ if (!\function_exists('set_property')) {
      *
      * @throws ReflectionException
      */
-    function set_property(mixed $object, string $propertyName, mixed $propertyValue)
+    function set_property(mixed $object, string $propertyName, mixed $propertyValue): void
     {
         $reflection = new \ReflectionClass($object);
         $property = $reflection->getProperty($propertyName);

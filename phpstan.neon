@@ -3,9 +3,6 @@ parameters:
 	paths:
 		- src
 		- tests
-	ignoreErrors:
-	    -
-	         message: '#has no return typehint specified#'
-	         path: *
+	
 
 
