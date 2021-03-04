@@ -9,7 +9,7 @@ class FixedTest extends TestCase
 {
     public function testGetTitle(): void
     {
-        $class = new Fixed();
-        $this->assertEquals('Fixed', $class->getTitle());
+        $fixed = new Fixed();
+        self::assertEquals('Fixed', $fixed->getTitle());
     }
 }

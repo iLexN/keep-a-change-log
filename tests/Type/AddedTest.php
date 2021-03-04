@@ -9,7 +9,7 @@ class AddedTest extends TestCase
 {
     public function testGetTitle(): void
     {
-        $class = new Added();
-        $this->assertEquals('Added', $class->getTitle());
+        $added = new Added();
+        self::assertEquals('Added', $added->getTitle());
     }
 }

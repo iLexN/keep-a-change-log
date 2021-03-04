@@ -8,7 +8,6 @@ use Ilex\ChangeLog\Formatter\FormatterInterface;
 use Ilex\ChangeLog\Release;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
-use function getProperty;
 
 class ChangeLogTest extends TestCase
 {
@@ -22,42 +21,42 @@ class ChangeLogTest extends TestCase
     {
         $title = 'Title';
         $description = 'This is description';
-        $formatter = new DefaultFormatter('url');
-        $this->changeLog = new ChangeLog($title, $description, $formatter);
+        $defaultFormatter = new DefaultFormatter('url');
+        $this->changeLog = new ChangeLog($title, $description, $defaultFormatter);
     }
 
     public function testConstruct(): void
     {
         $title = 'Title';
         $description = 'This is description';
-        $formatter = new DefaultFormatter('url');
+        $defaultFormatter = new DefaultFormatter('url');
 
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $title,
-                getProperty($this->changeLog, 'title'),
+                get_property($this->changeLog, 'title'),
                 'Test title'
             );
-        } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+        } catch (\ReflectionException $reflectionException) {
+            self::fail($reflectionException->getMessage());
         }
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 $description,
-                \getProperty($this->changeLog, 'description'),
+                get_property($this->changeLog, 'description'),
                 'Test description'
             );
         } catch (ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
         try {
-            $this->assertEquals(
-                $formatter,
-                \getProperty($this->changeLog, 'formatter'),
+            self::assertEquals(
+                $defaultFormatter,
+                get_property($this->changeLog, 'formatter'),
                 'Test formatter'
             );
         } catch (ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
@@ -73,22 +72,22 @@ class ChangeLogTest extends TestCase
             ->addRelease($r3);
 
         try {
-            $this->assertEquals(
+            self::assertEquals(
                 [$r1, $r2, $r3],
-                \getProperty($this->changeLog, 'releases')
+                get_property($this->changeLog, 'releases')
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
     }
 
     public function testAddReleaseReturnSelf(): void
     {
-        $r1 = new Release('tag', '2017-01-01');
+        $release = new Release('tag', '2017-01-01');
 
-        $this->assertEquals(
+        self::assertEquals(
             $this->changeLog,
-            $this->changeLog->addRelease($r1)
+            $this->changeLog->addRelease($release)
         );
     }
 
@@ -96,7 +95,7 @@ class ChangeLogTest extends TestCase
     {
         /** @var \Ilex\ChangeLog\Release $mockRelease */
         $mockRelease = $this->createMock(Release::class);
-        $this->assertEquals(
+        self::assertEquals(
             $this->changeLog,
             $this->changeLog->addRelease($mockRelease)
         );
@@ -127,16 +126,16 @@ class ChangeLogTest extends TestCase
 
         $result = $this->changeLog->render();
         $expected = \file_get_contents(__DIR__.'/expected/change-log.md');
-        $this->assertEquals($expected, $result, 'Test ChangeLog Full Render');
+        self::assertEquals($expected, $result, 'Test ChangeLog Full Render');
     }
 
     public function testRender3(): void
     {
         $mock = $this->createMock(FormatterInterface::class);
-        $mock->expects($this->once())
+        $mock->expects(self::once())
             ->method('render')
             ->willReturn('abc');
         $changelog = new ChangeLog('a', 'b', $mock);
-        $this->assertEquals('abc', $changelog->render());
+        self::assertEquals('abc', $changelog->render());
     }
 }

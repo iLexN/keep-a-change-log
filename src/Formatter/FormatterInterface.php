@@ -14,11 +14,8 @@ interface FormatterInterface
 {
 
     /**
-     * @param string $title
-     * @param string $description
-     * @param array|Release[] $releases
+     * @param array<int,Release> $releases
      *
-     * @return string
      */
     public function render(
         string $title,

@@ -13,59 +13,59 @@ class DefaultFormatterTest extends TestCase
     /**
      * @var DefaultFormatter
      */
-    private $formatter;
+    private $defaultFormatter;
 
-    protected function setUp()
+    protected function setUp():void
     {
-        $this->formatter = new DefaultFormatter('url');
+        $this->defaultFormatter = new DefaultFormatter('url');
     }
 
 
-    public function testConstruct()
+    public function testConstruct():void
     {
         $return='';
         try {
-            $return = getProperty($this->formatter, 'url');
-        } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            $return = get_property($this->defaultFormatter, 'url');
+        } catch (\ReflectionException $reflectionException) {
+            self::fail($reflectionException->getMessage());
         }
-        $this->assertEquals('url', $return);
+        self::assertEquals('url', $return);
     }
 
-    public function testRenderTitle()
+    public function testRenderTitle(): void
     {
         $title = 'title';
         $description = 'description';
         $return='';
         try {
-            $return = callMethod(
-                $this->formatter,
+            $return = call_method(
+                $this->defaultFormatter,
                 'renderTitle',
                 [$title, $description]
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected = '# '.$title.\PHP_EOL.$description.\PHP_EOL.\PHP_EOL;
-        $this->assertEquals($expected, $return);
+        self::assertEquals($expected, $return);
     }
 
-    public function testGetLinks()
+    public function testGetLinks(): void
     {
         $links = 'abc';
         $return = '';
         try {
-            setProperty($this->formatter, 'links', $links);
-            $return = callMethod($this->formatter, 'getLinks');
+            set_property($this->defaultFormatter, 'links', $links);
+            $return = call_method($this->defaultFormatter, 'getLinks');
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
-        $this->assertEquals($links, $return);
+        self::assertEquals($links, $return);
     }
 
-    public function testReleases()
+    public function testReleases(): void
     {
         $release = (new Release('tag', '2017-06-07'))
             ->added('1a')
@@ -77,20 +77,20 @@ class DefaultFormatterTest extends TestCase
             ->fixed('c');
         $return = '';
         try {
-            $return = callMethod(
-                $this->formatter,
+            $return = call_method(
+                $this->defaultFormatter,
                 'renderReleases',
                 [[$release, $release2]]
             );
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected = file_get_contents(__DIR__.'/expected/render-releases-result.md');
-        $this->assertEquals($expected, $return);
+        self::assertEquals($expected, $return);
     }
 
-    public function testRelease()
+    public function testRelease(): void
     {
         $release = (new Release('tag', '2017-06-07'))
             ->added('1a')
@@ -98,59 +98,60 @@ class DefaultFormatterTest extends TestCase
             ->fixed('c');
         $return = '';
         try {
-            $return = callMethod($this->formatter, 'renderRelease', [$release]);
+            $return = call_method($this->defaultFormatter, 'renderRelease', [$release]);
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected = file_get_contents(__DIR__.'/expected/render-release-result.md');
-        $this->assertEquals($expected, $return);
+        self::assertEquals($expected, $return);
     }
 
-    public function testRenderChanges()
+    public function testRenderChanges(): void
     {
-        $add = new Added();
-        $add->add('a');
-        $add->add('b');
+        $added = new Added();
+        $added->add('a');
+        $added->add('b');
+
         $return = '';
         try {
-            $return = callMethod($this->formatter, 'renderChanges', [$add]);
+            $return = call_method($this->defaultFormatter, 'renderChanges', [$added]);
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected = file_get_contents(__DIR__.'/expected/render-changes-result.md');
-        $this->assertEquals($expected, $return);
+        self::assertEquals($expected, $return);
     }
 
-    public function testRenderLink()
+    public function testRenderLink(): void
     {
         $release = new Release('tag1', '2017-06-07');
         $release2 = new Release('tag2', '2017-05-07');
         $release3 = new Release('tag3', '2017-04-07');
         $return = '';
         try {
-            callMethod($this->formatter, 'renderLink', [$release, $release2]);
-            $return = getProperty($this->formatter, 'links');
+            call_method($this->defaultFormatter, 'renderLink', [$release, $release2]);
+            $return = get_property($this->defaultFormatter, 'links');
         } catch (\ReflectionException $e) {
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected = '[tag1]: url/tag2...tag1'.\PHP_EOL;
-        $this->assertEquals($expected, $return, 'Test 2 Tag');
+        self::assertEquals($expected, $return, 'Test 2 Tag');
         try {
-            callMethod($this->formatter, 'renderLink', [$release2, $release3]);
-            $return = getProperty($this->formatter, 'links');
+            call_method($this->defaultFormatter, 'renderLink', [$release2, $release3]);
+            $return = get_property($this->defaultFormatter, 'links');
         } catch (\ReflectionException $e) {
             $return = '';
-            $this->fail($e->getMessage());
+            self::fail($e->getMessage());
         }
 
         $expected .= '[tag2]: url/tag3...tag2'.\PHP_EOL;
-        $this->assertEquals($expected, $return, 'Test 3 tag');
+        self::assertEquals($expected, $return, 'Test 3 tag');
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $release = (new Release('tag', '2017-06-07'))
             ->added('1a')
@@ -165,7 +166,7 @@ class DefaultFormatterTest extends TestCase
             ->changed('e')
             ->security('f');
 
-        $result = $this->formatter->render(
+        $result = $this->defaultFormatter->render(
             'This is title',
             'Very long description...',
             [
@@ -175,6 +176,6 @@ class DefaultFormatterTest extends TestCase
             ]
         );
         $expected = file_get_contents(__DIR__.'/expected/render-result.md');
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 }

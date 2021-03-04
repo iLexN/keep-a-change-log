@@ -9,7 +9,7 @@ class SecurityTest extends TestCase
 {
     public function testGetTitle(): void
     {
-        $class = new Security();
-        $this->assertEquals('Security', $class->getTitle());
+        $security = new Security();
+        self::assertEquals('Security', $security->getTitle());
     }
 }

@@ -15,44 +15,44 @@ class ChangeTypeFactoryTest extends TestCase
 {
     public function testFactory(): void
     {
-        $factory = new ChangeTypeFactory();
+        $changeTypeFactory = new ChangeTypeFactory();
 
-        $this->assertEquals(new Added(), $factory->create(1));
-        $this->assertEquals(
+        self::assertEquals(new Added(), $changeTypeFactory->create(1));
+        self::assertEquals(
             new Added(),
-            $factory->create(ChangeTypeFactory::ADDED)
+            $changeTypeFactory->create(ChangeTypeFactory::ADDED)
         );
 
-        $this->assertEquals(new Changed(), $factory->create(2));
-        $this->assertEquals(
+        self::assertEquals(new Changed(), $changeTypeFactory->create(2));
+        self::assertEquals(
             new Changed(),
-            $factory->create(ChangeTypeFactory::CHANGED)
+            $changeTypeFactory->create(ChangeTypeFactory::CHANGED)
         );
 
-        $this->assertEquals(new Deprecated(), $factory->create(3));
-        $this->assertEquals(
+        self::assertEquals(new Deprecated(), $changeTypeFactory->create(3));
+        self::assertEquals(
             new Deprecated(),
-            $factory->create(ChangeTypeFactory::DEPRECATED)
+            $changeTypeFactory->create(ChangeTypeFactory::DEPRECATED)
         );
 
-        $this->assertEquals(new Removed(), $factory->create(4));
-        $this->assertEquals(
+        self::assertEquals(new Removed(), $changeTypeFactory->create(4));
+        self::assertEquals(
             new Removed(),
-            $factory->create(ChangeTypeFactory::REMOVED)
+            $changeTypeFactory->create(ChangeTypeFactory::REMOVED)
         );
 
-        $this->assertEquals(new Fixed(), $factory->create(5));
-        $this->assertEquals(
+        self::assertEquals(new Fixed(), $changeTypeFactory->create(5));
+        self::assertEquals(
             new Fixed(),
-            $factory->create(ChangeTypeFactory::FIXED)
+            $changeTypeFactory->create(ChangeTypeFactory::FIXED)
         );
 
-        $this->assertEquals(new SECURITY(), $factory->create(6));
-        $this->assertEquals(
+        self::assertEquals(new SECURITY(), $changeTypeFactory->create(6));
+        self::assertEquals(
             new SECURITY(),
-            $factory->create(ChangeTypeFactory::SECURITY)
+            $changeTypeFactory->create(ChangeTypeFactory::SECURITY)
         );
 
-        $this->assertEquals(new Added(), $factory->create(11111));
+        self::assertEquals(new Added(), $changeTypeFactory->create(11111));
     }
 }
