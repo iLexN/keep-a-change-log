@@ -4,7 +4,7 @@ use Ilex\ChangeLog\ChangeLog;
 use Ilex\ChangeLog\Formatter\DefaultFormatter;
 use Ilex\ChangeLog\Release;
 
-require(__DIR__.'/../vendor/autoload.php');
+require(__DIR__ . '/../vendor/autoload.php');
 
 $c = new ChangeLog(
     'Change Log',
@@ -13,6 +13,14 @@ $c = new ChangeLog(
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).',
     new DefaultFormatter('https://github.com/iLexN/keep-a-change-log/compare')
+);
+
+$c->addRelease(
+    (new Release('1.2.0', '2021-03-04'))
+        ->added('Add github CI')
+        ->added('PHP 8 support')
+        ->removed('Remove PHP 7.* support')
+        ->removed('Remove Travis CI')
 );
 
 $c->addRelease(
@@ -44,4 +52,4 @@ $c->addRelease(
 
 print($c->render());
 // or save
-file_put_contents(__DIR__.'/../CHANGELOG.md', $c->render());
+file_put_contents(__DIR__ . '/../CHANGELOG.md', $c->render());
