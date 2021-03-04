@@ -51,8 +51,7 @@ class DefaultFormatter implements FormatterInterface
 
     private function renderRelease(Release $release): string
     {
-        $string = '';
-        $string .= sprintf('## [%s] - %s', $release->tag,
+        $string = sprintf('## [%s] - %s', $release->tag,
                 $release->date) . \PHP_EOL;
         $list = $release->getChangeList();
         foreach ($list as $changes) {
