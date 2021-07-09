@@ -54,8 +54,8 @@ class DefaultFormatter implements FormatterInterface
         $string = sprintf('## [%s] - %s', $release->tag,
                 $release->date) . \PHP_EOL;
         $list = $release->getChangeList();
-        foreach ($list as $changes) {
-            $string .= $this->renderChanges($changes);
+        foreach ($list as $singleList) {
+            $string .= $this->renderChanges($singleList);
         }
         return $string;
     }
@@ -64,8 +64,8 @@ class DefaultFormatter implements FormatterInterface
     {
         $string = sprintf('### %s', $type->getTitle()) . \PHP_EOL;
         $listChange = $type->getList();
-        foreach ($listChange as $featureList) {
-            $string .= sprintf('- %s', $featureList) . \PHP_EOL;
+        foreach ($listChange as $singleListChange) {
+            $string .= sprintf('- %s', $singleListChange) . \PHP_EOL;
         }
         return $string . \PHP_EOL;
     }
