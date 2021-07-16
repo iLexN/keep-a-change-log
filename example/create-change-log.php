@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 );
 
 $c->addRelease(
+    (new Release('1.3.0', '2021-07-14'))
+        ->added('Add bin command')
+);
+
+$c->addRelease(
     (new Release('1.2.0', '2021-03-04'))
         ->added('Add github CI')
         ->added('PHP 8 support')
@@ -49,6 +54,7 @@ $c->addRelease(
         ->added('First release')
 );
 
+return $c;
 
 print($c->render());
 // or save
