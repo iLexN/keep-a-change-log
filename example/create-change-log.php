@@ -10,9 +10,14 @@ $c = new ChangeLog(
     'Change Log',
     'All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).',
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).',
     new DefaultFormatter('https://github.com/iLexN/keep-a-change-log/compare')
+);
+
+$c->addRelease(
+    (new Release('1.3.0', '2021-07-14'))
+        ->added('Add bin command')
 );
 
 $c->addRelease(
@@ -49,6 +54,7 @@ $c->addRelease(
         ->added('First release')
 );
 
+return $c;
 
 print($c->render());
 // or save
