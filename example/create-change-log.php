@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 );
 
 $c->addRelease(
+    (new Release('1.3.1', '2021-08-10'))
+        ->fixed('fix composer.json bin command')
+);
+
+$c->addRelease(
     (new Release('1.3.0', '2021-07-14'))
         ->added('Add bin command')
 );
@@ -55,7 +60,3 @@ $c->addRelease(
 );
 
 return $c;
-
-print($c->render());
-// or save
-file_put_contents(__DIR__ . '/../CHANGELOG.md', $c->render());
