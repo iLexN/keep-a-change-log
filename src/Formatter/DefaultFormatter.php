@@ -46,6 +46,7 @@ class DefaultFormatter implements FormatterInterface
                 $this->renderLink($release, $nextRelease);
             }
         }
+
         return $out;
     }
 
@@ -57,6 +58,7 @@ class DefaultFormatter implements FormatterInterface
         foreach ($list as $singleList) {
             $string .= $this->renderChanges($singleList);
         }
+
         return $string;
     }
 
@@ -67,6 +69,7 @@ class DefaultFormatter implements FormatterInterface
         foreach ($listChange as $singleListChange) {
             $string .= sprintf('- %s', $singleListChange) . \PHP_EOL;
         }
+
         return $string . \PHP_EOL;
     }
 

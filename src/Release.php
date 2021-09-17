@@ -45,6 +45,7 @@ class Release
         if (!\array_key_exists($key, $this->changeList)) {
             $this->changeList[$key] = $this->changeTypeFactory->create($key);
         }
+
         $this->changeList[$key]->add($description);
         return $this;
     }
