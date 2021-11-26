@@ -2,7 +2,9 @@
 
 namespace Ilex\ChangeLog\Type;
 
+use Ilex\ChangeLog\Enum\ChangeType;
+
 interface ChangeTypeFactoryInterface
 {
-    public function create(int $type): TypeInterface;
+    public function create(ChangeType $type): TypeInterface;
 }

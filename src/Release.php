@@ -2,6 +2,7 @@
 
 namespace Ilex\ChangeLog;
 
+use Ilex\ChangeLog\Enum\ChangeType;
 use Ilex\ChangeLog\Type\ChangeTypeFactory;
 use Ilex\ChangeLog\Type\ChangeTypeFactoryInterface;
 
@@ -40,10 +41,11 @@ class Release
     }
 
 
-    private function addChangeList(int $key, string $description): self
+    private function addChangeList(ChangeType $type, string $description): self
     {
+        $key = $type->value;
         if (!\array_key_exists($key, $this->changeList)) {
-            $this->changeList[$key] = $this->changeTypeFactory->create($key);
+            $this->changeList[$key] = $this->changeTypeFactory->create($type);
         }
 
         $this->changeList[$key]->add($description);
@@ -60,34 +62,34 @@ class Release
 
     public function added(string $description): self
     {
-        return $this->addChangeList(ChangeTypeFactory::ADDED, $description);
+        return $this->addChangeList(ChangeType::ADDED, $description);
     }
 
     public function changed(string $description): self
     {
-        return $this->addChangeList(ChangeTypeFactory::CHANGED, $description);
+        return $this->addChangeList(ChangeType::CHANGED, $description);
     }
 
     public function deprecated(string $description): self
     {
         return $this->addChangeList(
-            ChangeTypeFactory::DEPRECATED,
+            ChangeType::DEPRECATED,
             $description
         );
     }
 
     public function removed(string $description): self
     {
-        return $this->addChangeList(ChangeTypeFactory::REMOVED, $description);
+        return $this->addChangeList(ChangeType::REMOVED, $description);
     }
 
     public function fixed(string $description): self
     {
-        return $this->addChangeList(ChangeTypeFactory::FIXED, $description);
+        return $this->addChangeList(ChangeType::FIXED, $description);
     }
 
     public function security(string $description): self
     {
-        return $this->addChangeList(ChangeTypeFactory::SECURITY, $description);
+        return $this->addChangeList(ChangeType::SECURITY, $description);
     }
 }

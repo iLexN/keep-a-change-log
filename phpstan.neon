@@ -1,8 +1,10 @@
 parameters:
-	level: max
-	paths:
-		- src
-		- tests
-	
-
+    level: max
+    paths:
+        - src
+        - tests
+    ignoreErrors:
+        # phpstan not support 8.1 enum
+        - '#Access to undefined constant Ilex\\ChangeLog\\Enum\\ChangeType::(.*)#'
+        - '#Access to an undefined property Ilex\\ChangeLog\\Enum\\ChangeType::(.*)#'
 

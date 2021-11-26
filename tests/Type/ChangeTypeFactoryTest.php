@@ -2,6 +2,7 @@
 
 namespace Ilex\ChangeLog\Tests\Type;
 
+use Ilex\ChangeLog\Enum\ChangeType;
 use Ilex\ChangeLog\Type\Added;
 use Ilex\ChangeLog\Type\Changed;
 use Ilex\ChangeLog\Type\ChangeTypeFactory;
@@ -17,42 +18,42 @@ class ChangeTypeFactoryTest extends TestCase
     {
         $changeTypeFactory = new ChangeTypeFactory();
 
-        self::assertEquals(new Added(), $changeTypeFactory->create(1));
+        //self::assertEquals(new Added(), $changeTypeFactory->create(ChangeType::ADDED));
         self::assertEquals(
             new Added(),
-            $changeTypeFactory->create(ChangeTypeFactory::ADDED)
+            $changeTypeFactory->create(ChangeType::ADDED)
         );
 
-        self::assertEquals(new Changed(), $changeTypeFactory->create(2));
+        //self::assertEquals(new Changed(), $changeTypeFactory->create(ChangeType::CHANGED));
         self::assertEquals(
             new Changed(),
-            $changeTypeFactory->create(ChangeTypeFactory::CHANGED)
+            $changeTypeFactory->create(ChangeType::CHANGED)
         );
 
-        self::assertEquals(new Deprecated(), $changeTypeFactory->create(3));
+        //self::assertEquals(new Deprecated(), $changeTypeFactory->create(ChangeType::DEPRECATED));
         self::assertEquals(
             new Deprecated(),
-            $changeTypeFactory->create(ChangeTypeFactory::DEPRECATED)
+            $changeTypeFactory->create(ChangeType::DEPRECATED)
         );
 
-        self::assertEquals(new Removed(), $changeTypeFactory->create(4));
+        //self::assertEquals(new Removed(), $changeTypeFactory->create(ChangeType::REMOVED));
         self::assertEquals(
             new Removed(),
-            $changeTypeFactory->create(ChangeTypeFactory::REMOVED)
+            $changeTypeFactory->create(ChangeType::REMOVED)
         );
 
-        self::assertEquals(new Fixed(), $changeTypeFactory->create(5));
+        //self::assertEquals(new Fixed(), $changeTypeFactory->create(ChangeType::FIXED));
         self::assertEquals(
             new Fixed(),
-            $changeTypeFactory->create(ChangeTypeFactory::FIXED)
+            $changeTypeFactory->create(ChangeType::FIXED)
         );
 
-        self::assertEquals(new SECURITY(), $changeTypeFactory->create(6));
+        //self::assertEquals(new SECURITY(), $changeTypeFactory->create(ChangeType::SECURITY));
         self::assertEquals(
             new SECURITY(),
-            $changeTypeFactory->create(ChangeTypeFactory::SECURITY)
+            $changeTypeFactory->create(ChangeType::SECURITY)
         );
 
-        self::assertEquals(new Added(), $changeTypeFactory->create(11111));
+//        self::assertEquals(new Added(), $changeTypeFactory->create(11111));
     }
 }
