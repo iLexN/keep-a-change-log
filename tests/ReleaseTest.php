@@ -2,6 +2,7 @@
 
 namespace Ilex\ChangeLog\Tests;
 
+use Ilex\ChangeLog\Enum\ChangeType;
 use Ilex\ChangeLog\Release;
 use Ilex\ChangeLog\Type\Added;
 use Ilex\ChangeLog\Type\Changed;
@@ -67,12 +68,12 @@ class ReleaseTest extends TestCase
     public function testAddChangeList(): void
     {
         try {
-            call_method($this->release, 'addChangeList', [1, 'add1']);
+            call_method($this->release, 'addChangeList', [ChangeType::ADDED, 'add1']);
         } catch (\ReflectionException $e) {
             self::fail($e->getMessage());
         }
         try {
-            call_method($this->release, 'addChangeList', [1, 'add2']);
+            call_method($this->release, 'addChangeList', [ChangeType::ADDED, 'add2']);
         } catch (\ReflectionException $e) {
             self::fail($e->getMessage());
         }
@@ -94,7 +95,7 @@ class ReleaseTest extends TestCase
         try {
             self::assertEquals(
                 $this->release,
-                call_method($this->release, 'addChangeList', [1, 'add2']),
+                call_method($this->release, 'addChangeList', [ChangeType::ADDED, 'add2']),
                 'Test return self'
             );
         } catch (\ReflectionException $e) {

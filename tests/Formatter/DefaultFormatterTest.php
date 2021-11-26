@@ -13,7 +13,7 @@ class DefaultFormatterTest extends TestCase
     /**
      * @var DefaultFormatter
      */
-    private $defaultFormatter;
+    private DefaultFormatter $defaultFormatter;
 
     protected function setUp():void
     {

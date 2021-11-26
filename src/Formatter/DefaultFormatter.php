@@ -19,7 +19,7 @@ class DefaultFormatter implements FormatterInterface
     /**
      * DefaultFormatter constructor.
      */
-    public function __construct(private string $url)
+    public function __construct(private readonly string $url)
     {
     }
 
