@@ -14,37 +14,37 @@ class ChangeTypeFactory implements ChangeTypeFactoryInterface
      * ADDED
      * @var int
      */
-    public const ADDED = 1;
+    public final const ADDED = 1;
 
     /**
      * CHANGED
      * @var int
      */
-    public const CHANGED = 2;
+    public final const CHANGED = 2;
 
     /**
      * DEPRECATED
      * @var int
      */
-    public const DEPRECATED = 3;
+    public final const DEPRECATED = 3;
 
     /**
      * REMOVED
      * @var int
      */
-    public const REMOVED = 4;
+    public final const REMOVED = 4;
 
     /**
      * FIXED
      * @var int
      */
-    public const FIXED = 5;
+    public final const FIXED = 5;
 
     /**
      * SECURITY
      * @var int
      */
-    public const SECURITY = 6;
+    public final const SECURITY = 6;
 
     public function create(int $type): TypeInterface
     {

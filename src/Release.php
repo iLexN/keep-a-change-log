@@ -21,14 +21,14 @@ class Release
     /**
      * @var \Ilex\ChangeLog\Type\ChangeTypeFactoryInterface
      */
-    private ChangeTypeFactoryInterface $changeTypeFactory;
+    private readonly ChangeTypeFactoryInterface $changeTypeFactory;
 
     /**
      * Release constructor.
      */
     public function __construct(
-        public string $tag,
-        public string $date,
+        public readonly string $tag,
+        public readonly string $date,
         ?ChangeTypeFactoryInterface $changeTypeFactory = null
     ) {
         $this->changeTypeFactory = $this->setFactory($changeTypeFactory);

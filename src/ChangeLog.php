@@ -20,7 +20,7 @@ class ChangeLog
     /**
      * ChangeLog constructor.
      */
-    public function __construct(private string $title, private string $description, private FormatterInterface $formatter)
+    public function __construct(private readonly string $title, private readonly string $description, private readonly FormatterInterface $formatter)
     {
     }
 
