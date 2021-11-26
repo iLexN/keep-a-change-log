@@ -6,5 +6,5 @@ use Ilex\ChangeLog\Enum\ChangeType;
 
 interface ChangeTypeFactoryInterface
 {
-    public function create(ChangeType $type): TypeInterface;
+    public function create(ChangeType $changeType): TypeInterface;
 }

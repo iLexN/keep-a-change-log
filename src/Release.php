@@ -41,11 +41,11 @@ class Release
     }
 
 
-    private function addChangeList(ChangeType $type, string $description): self
+    private function addChangeList(ChangeType $changeType, string $description): self
     {
-        $key = $type->value;
+        $key = $changeType->value;
         if (!\array_key_exists($key, $this->changeList)) {
-            $this->changeList[$key] = $this->changeTypeFactory->create($type);
+            $this->changeList[$key] = $this->changeTypeFactory->create($changeType);
         }
 
         $this->changeList[$key]->add($description);
