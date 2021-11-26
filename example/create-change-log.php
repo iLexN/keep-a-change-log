@@ -16,8 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 );
 
 $c->addRelease(
-    (new Release('1.4.0', '2021-11-26'))
+    (new Release('2.0.0', '2021-11-26'))
         ->added('Add support for PHP 8.1')
+        ->changed('ChangeTypeFactoryInterface - changed the int input to enum input')
         ->removed('Remove support for PHP 8.0')
 );
 
