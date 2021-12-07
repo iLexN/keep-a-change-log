@@ -46,6 +46,7 @@ if ($isAutoloadFound === false) {
 
         /** @var string $path */
         $path = $input->getArgument('path');
+        /** @var string $target */
         $target = $input->getArgument('destination');
         $file = $target . '/CHANGELOG.md';
 
@@ -57,7 +58,7 @@ if ($isAutoloadFound === false) {
         }
         $io->info('Changelog file path: ' . $file);
 
-        /** @var ChangeLog $config */
+        /** @var ChangeLog $changeLog */
         $changeLog = include $path;
         $result = \file_put_contents($file, $changeLog->render());
         if ($result === false) {
