@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 );
 
 $c->addRelease(
+    (new Release('2.0.1', '2021-12-07'))
+        ->fixed('Missing symfony console')
+);
+
+$c->addRelease(
     (new Release('2.0.0', '2021-11-26'))
         ->added('Add support for PHP 8.1')
         ->changed('ChangeTypeFactoryInterface - changed the int input to enum input')
