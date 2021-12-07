@@ -15,10 +15,10 @@ composer require ilexn/keep-a-change-log
 ```
 
 ## Usage example
-For examples and usage, please refer to the [Example].
-
-## API
-Please refer to the [docs].
+For examples and usage, please refer to [Example].
+```shell
+vendor/bin/ilexn-kcg example/create-change-log.php
+```
 
 <!-- Markdown link & img dfn's -->
 [Example]: https://github.com/iLexN/keep-a-change-log/tree/master/example
