@@ -21,7 +21,7 @@ $isAutoloadFound = false;
 foreach ($possibleAutoloadPaths as $possibleAutoloadPath) {
     if (file_exists($possibleAutoloadPath)) {
         require_once $possibleAutoloadPath;
-        +$isAutoloadFound = true;
+        $isAutoloadFound = true;
         break;
     }
 }
