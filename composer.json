@@ -35,7 +35,11 @@
     },
     "bin": ["bin/ilexn-kcg"],
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "infection/extension-installer": true
+        }
     },
     "scripts": {
         "test-test": "vendor/bin/infection --threads=4",
