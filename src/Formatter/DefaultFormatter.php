@@ -91,7 +91,6 @@ class DefaultFormatter implements FormatterInterface
         $this->links = '';
         $out = $this->renderTitle($title, $description);
         $out .= $this->renderReleases($releases);
-        $out .= $this->getLinks();
-        return $out;
+        return $out . $this->getLinks();
     }
 }
