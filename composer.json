@@ -31,7 +31,7 @@
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^0.13",
-        "vimeo/psalm": "^4.23"
+        "vimeo/psalm": "^4.24"
     },
     "bin": ["bin/ilexn-kcg"],
     "config": {
