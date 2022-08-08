@@ -19,9 +19,6 @@ class Release
      */
     private array $changeList = [];
 
-    /**
-     * @var \Ilex\ChangeLog\Type\ChangeTypeFactoryInterface
-     */
     private readonly ChangeTypeFactoryInterface $changeTypeFactory;
 
     /**
