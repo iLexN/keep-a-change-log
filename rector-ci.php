@@ -15,7 +15,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::PSR_4,
         SetList::EARLY_RETURN,
         SetList::NAMING,
-        SetList::TYPE_DECLARATION_STRICT,
     ]);
 
 
