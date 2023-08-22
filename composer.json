@@ -29,9 +29,9 @@
         "roave/security-advisories": "dev-latest",
         "infection/infection": "^0.26.21",
         "phpstan/phpstan": "^1.10.29",
-        "phpunit/phpunit": "^10.3.1",
+        "phpunit/phpunit": "^10.3.2",
         "rector/rector": "^0.18.0",
-        "vimeo/psalm": "^5.14.1"
+        "vimeo/psalm": "^5.15.0"
     },
     "bin": ["bin/ilexn-kcg"],
     "config": {
