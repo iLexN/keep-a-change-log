@@ -20,7 +20,7 @@ return static function (RectorConfig $rectorConfig): void {
 
 
     $rectorConfig->skip([
-        Rector\Php80\Rector\FunctionLike\UnionTypesRector::class,
+        //Rector\Php80\Rector\FunctionLike\UnionTypesRector::class,
         Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector::class,
         Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector::class,
     ]);
