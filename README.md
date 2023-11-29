@@ -6,7 +6,6 @@
 
 ![GitHub Action](https://github.com/iLexN/keep-a-change-log/workflows/CI%20Check/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/iLexN/keep-a-change-log/badge.svg?branch=2.x)](https://coveralls.io/github/iLexN/keep-a-change-log?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iLexN/keep-a-change-log/badges/quality-score.png?b=2.x)](https://scrutinizer-ci.com/g/iLexN/keep-a-change-log/?branch=master)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FiLexN%2Fkeep-a-change-log%2F2.x)](https://dashboard.stryker-mutator.io/reports/github.com/iLexN/keep-a-change-log/2.x)
 
 ## Installation
