@@ -28,7 +28,7 @@
     "require-dev": {
         "roave/security-advisories": "dev-latest",
         "infection/infection": "^0.27.10",
-        "phpstan/phpstan": "^1.10.60",
+        "phpstan/phpstan": "^1.10.63",
         "phpunit/phpunit": "^10.5.13",
          "rector/rector": "^1.0.2",
         "vimeo/psalm": "^5.23.1"
