@@ -29,7 +29,7 @@
         "roave/security-advisories": "dev-latest",
         "infection/infection": "^0.27.11",
         "phpstan/phpstan": "^1.11.7",
-        "phpunit/phpunit": "^10.5.20",
+        "phpunit/phpunit": "^11.2.6",
          "rector/rector": "^1.2.0",
         "vimeo/psalm": "^5.25.0"
     },
