@@ -30,7 +30,7 @@
         "infection/infection": "^0.27.11",
         "phpstan/phpstan": "^1.11.10",
         "phpunit/phpunit": "^10.5.20",
-         "rector/rector": "^1.2.2",
+         "rector/rector": "^1.2.3",
         "vimeo/psalm": "^5.25.0"
     },
     "bin": ["bin/ilexn-kcg"],
